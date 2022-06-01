@@ -45,8 +45,9 @@ input {
 
 .Box {
   margin:  auto;
-  background-color: #F0F0F0;
-  box-shadow: 4px 3px 8px 1px #969696;
+  background-color: #F5F8FA;
+  border-style: solid;
+  border-color:  #CBD6E2;
   width: 50%;
   border-radius: 0.5em;
 }
