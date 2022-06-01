@@ -1,25 +1,21 @@
 import React from 'react';
-import PasswordEntry from './PasswordEntry.js';
-import PasswordCreateEntry from './PasswordCreateEntry.js';
-import EmailEntry from './EmailEntry.js';
-import MandatoryEntry from './MandatoryEntry.js';
-import NonMandatoryEntry from './NonMandatoryEntry.js';
-import DateEntry from './DateEntry.js';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Registro from './pages/Registro.js';
+import Layout from './pages/Layout.js';
+import Home from './pages/Home.js';
+
 import './App.css';
 
 function App() {
   return(
-    <div className="flexible">
-
-    <MandatoryEntry label="Nombre" warning="Llenar este campo es obligatorio"/>
-    <MandatoryEntry label="Apellido" warning="Llenar este campo es obligatorio"/>
-    <NonMandatoryEntry label="Apellido Materno" warning="Llenar este campo es obligatorio"/>
-    <EmailEntry label="Correo Electrónico" warning="La dirección de correo no cumple con el formato especificado"/>
-    <DateEntry label="Fecha de nacimiento" warning="Llenar este campo es obligatorio"/>
-    <MandatoryEntry label="Número de Teléfono" warning="Llenar este campo es obligatorio"/>
-    <PasswordCreateEntry/>
-    <PasswordEntry label="Confirme la contraseña" warning="Llenar este campo es obligatorio"/>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout/>}>
+          <Route index element={<Home/>}/>
+          <Route path="/Registro" element={<Registro/>}/>
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
 
