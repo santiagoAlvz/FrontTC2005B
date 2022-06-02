@@ -7,16 +7,13 @@ const LayoutSolicitante = () => {
       <nav className="NavBar">
         <ul>
           <li>
-            <Link to="/solicitante">DashboardSolicitante</Link>
+            <Link to="/reclutador">Solicitudes</Link>
           </li>
           <li>
-            <Link to="/solicitante/configuracion">Configuración</Link>
+            <Link to="/reclutador/configuracion">Configuración</Link>
           </li>
           <li>
-            <Link to="/solicitante/solicitud">Crear Solicitud</Link>
-          </li>
-          <li>
-            <Link to="/solicitante/perfil">Mi Perfil Profesional</Link>
+            <Link to="/reclutador/vacante">Crear Vacante</Link>
           </li>
         </ul>
       </nav>
