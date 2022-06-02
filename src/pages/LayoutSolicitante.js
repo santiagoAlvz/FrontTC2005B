@@ -4,7 +4,7 @@ import { Outlet, Link } from "react-router-dom";
 const LayoutSolicitante = () => {
   return (
     <>
-      <nav>
+      <nav className="NavBar">
         <ul>
           <li>
             <Link to="/solicitante">DashboardSolicitante</Link>

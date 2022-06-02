@@ -1,13 +1,12 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-//Importación de las páginas
+//Importación de Páginas
 import Registro from './pages/Registro.js';
-import DashboardSolicitante from './pages/Registro.js';
+import DashboardSolicitante from './pages/DashboardSolicitante.js';
 import Home from './pages/Home.js';
 
-//Importación de las barras de navegación
-import Layout from './pages/Layout.js';
+//Importación de barras de navegación
 import LayoutSolicitante from './pages/LayoutSolicitante.js';
 
 import './App.css';
@@ -16,10 +15,8 @@ function App() {
   return(
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout/>}>
-          <Route index element={<Home/>}/>
-          <Route path="/Registro" element={<Registro/>}/>
-        </Route>
+        <Route index element={<Home/>}/>
+        <Route path="/registro" element={<Registro/>}/>
         <Route path="/solicitante" element={<LayoutSolicitante/>}>
           <Route index element={<DashboardSolicitante/>}/>
         </Route>

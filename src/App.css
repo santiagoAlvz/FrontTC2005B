@@ -51,6 +51,10 @@ input {
   border-radius: 0.5em;
 }
 
+.NavBar {
+  background-color: lightblue;
+}
+
 .green {
   color: green;
 }
