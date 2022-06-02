@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class MadatoryEntry extends Component {
+export default class MandatoryEntry extends Component {
 	state = {text: "", valid: false}
 
 	verify = event => {

@@ -22,14 +22,13 @@ p { margin-top: 0;  margin-bottom: 0;}
 
 button {
     display: block;
-    margin:  20px;
     font-size: 1em;
     border: 0;
     padding: 0.5em;
-    border-radius: 0.5em;
+    border-radius: 0.3em;
     cursor: pointer;
     background-color: lightgrey;
-    flex-grow: 1;
+
 }
 
 input {
@@ -59,24 +58,6 @@ input {
 .red {
   color: red;
   font-weight: bold;
-}
-
-.Header {
-  background-color:  lightblue;
-  border-bottom: none;
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.horizontal {
-  flex-direction: row;
-  display: flex;
-  padding: 0;
-  justify-content: space-around;
 }
 
 .flexible {
