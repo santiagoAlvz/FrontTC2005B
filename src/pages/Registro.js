@@ -22,7 +22,7 @@ export default class Registro extends Component {
 			    <PasswordEntry label="Confirme la contraseña" warning="Llenar este campo es obligatorio"/>
 		    </div>
 		    <button>Crear Cuenta</button>
-		    <a href="/">Volver al inicioz</a>
+		    <a href="/">Volver al inicio</a>
 	    </div>
 	    )
 	 }

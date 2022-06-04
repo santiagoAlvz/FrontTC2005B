@@ -15,6 +15,9 @@ const LayoutSolicitante = () => {
           <li>
             <Link to="/reclutador/vacante">Crear Vacante</Link>
           </li>
+          <li>
+            <Link to="/">Cerrar Sesión</Link>
+          </li>
         </ul>
       </nav>
 

@@ -18,6 +18,9 @@ const LayoutSolicitante = () => {
           <li>
             <Link to="/solicitante/perfil">Mi Perfil Profesional</Link>
           </li>
+          <li>
+            <Link to="/">Cerrar Sesión</Link>
+          </li>
         </ul>
       </nav>
 

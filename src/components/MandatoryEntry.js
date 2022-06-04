@@ -3,6 +3,10 @@ import React, { Component } from 'react';
 export default class MandatoryEntry extends Component {
 	state = {text: "", valid: false}
 
+	getText = () => {
+		return this.state.text;
+	}
+
 	verify = event => {
 		var text =  event.target.value;
 		this.setState({text: text});
