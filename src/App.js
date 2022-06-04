@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 //Importación de Páginas
@@ -16,10 +16,16 @@ import CrearVacante from './pages/CrearVacante.js';
 import LayoutSolicitante from './pages/LayoutSolicitante.js';
 import LayoutReclutador from './pages/LayoutReclutador.js';
 
+import UserContext from './contexts/UserContext.js'
+
 import './App.css';
 
 function App() {
+
+  const [user, setUser] = useState({id: 0, name: "undefined"});
+
   return(
+    <UserContext.Provider value={{user, setUser}}>
     <BrowserRouter>
       <Routes>
         <Route index element={<Home/>}/>
@@ -37,6 +43,7 @@ function App() {
         </Route>
       </Routes>
     </BrowserRouter>
+    </UserContext.Provider>
   )
 }
 
