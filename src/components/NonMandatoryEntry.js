@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 
-export default class MandatoryEntry extends Component {
+export default class NonMandatoryEntry extends Component {
 	state = {text: ""}
+
+	getText = () => {
+		return this.state.text;
+	}
 
 	verify = event => {
 		var text =  event.target.value;

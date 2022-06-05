@@ -42,6 +42,12 @@ input {
   height: 2em;
 }
 
+form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .Box {
   margin:  auto;
   background-color: #F5F8FA;

@@ -8,11 +8,16 @@ function hasSymbols(letter){
 }
 
 export default class PasswordCreateEntry extends Component {
-	state = {length: false, upper: false, lower: false, number : false, symbols : false}
+	state = {text: "", length: false, upper: false, lower: false, number : false, symbols : false}
+
+	getText = () => {
+		return this.state.text;
+	}
 
 	verify = event => {
 
 		var text = event.target.value;
+		this.setState({text: text});
 		this.setState({length: false});
 		this.setState({upper: false});
 		this.setState({lower: false});

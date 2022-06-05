@@ -4,24 +4,55 @@ import PasswordEntry from '../components/PasswordEntry.js';
 import PasswordCreateEntry from '../components/PasswordCreateEntry.js';
 import EmailEntry from '../components/EmailEntry.js';
 import MandatoryEntry from '../components/MandatoryEntry.js';
+import NonMandatoryEntry from '../components/NonMandatoryEntry.js';
 import DateEntry from '../components/DateEntry.js';
+import PhoneEntry from '../components/PhoneEntry.js';
 
 export default class Registro extends Component {
+
+	sexSelected = (event) => {
+		this.setState({sex: event.target.value});
+	}
+
+	addAcount = () => {
+		if(this.pa1.getText() === this.pa2.getText()){
+			const object = {name: this.nom.getText(), last1: this.ap1.getText(), last2: this.ap2.getText(), email: this.ema.getText(), birth: this.nac.getText(), phone: this.num.getText(), password: this.pa1.getText(), state: this.civ.getText(), notify: this.not.getText(), sex: this.state.sex};
+			fetch('/solicitante',{method: 'POST', body: JSON.stringify(object), headers: {'Content-Type': 'application/json'}});
+
+		} else
+			alert("Las dos contraseñas no son iguales");
+	}
+
 	render(){
+
 		return(
 		<div>
 			<h1>Registro</h1>
 		    <div className="flexible">
-			    <MandatoryEntry label="Nombre" warning="Llenar este campo es obligatorio"/>
-			    <MandatoryEntry label="Apellido" warning="Llenar este campo es obligatorio"/>
-			    <MandatoryEntry label="Apellido Materno" warning="Llenar este campo es obligatorio"/>
-			    <EmailEntry label="Correo Electrónico" warning="La dirección de correo no cumple con el formato especificado"/>
-			    <DateEntry label="Fecha de nacimiento" warning="Llenar este campo es obligatorio"/>
-			    <MandatoryEntry label="Número de Teléfono" warning="Llenar este campo es obligatorio"/>
-			    <PasswordCreateEntry/>
-			    <PasswordEntry label="Confirme la contraseña" warning="Llenar este campo es obligatorio"/>
+			    <MandatoryEntry ref={nom => this.nom = nom} label="Nombre(s)" warning="Llenar este campo es obligatorio"/>
+			    <NonMandatoryEntry ref={ap1 => this.ap1 = ap1} label="Apellido" warning="Llenar este campo es obligatorio"/>
+			    <NonMandatoryEntry ref={ap2 => this.ap2 = ap2} label="Apellido Materno"/>
+			    <div>
+				    <label>Sexo</label>
+				    <form>
+			            <input type="radio" value="M" id="male"
+			              onChange={this.sexSelected} name="gender" />
+			              <label for="male">Masculino</label>
+
+			            <input type="radio" value="F" id="female"
+			              onChange={this.sexSelected} name="gender"/>
+			              <label for="female">Femenino</label>
+			         </form>
+		         </div>
+			    <EmailEntry ref={ema => this.ema = ema} label="Correo Electrónico" warning="La dirección de correo no cumple con el formato especificado"/>
+			    <DateEntry ref={nac => this.nac = nac} label="Fecha de nacimiento" warning="Llenar este campo es obligatorio"/>
+			    <PhoneEntry ref={num => this.num = num} label="Número de Teléfono" warning="Llenar este campo es obligatorio"/>
+			    <NonMandatoryEntry ref={civ => this.civ = civ} label="Estado Civil"/>
+			    <DateEntry ref={not => this.not = not} label="Enviar notificaciones desde el"/>
+			    <PasswordCreateEntry ref={pa1 => this.pa1 = pa1}/>
+			    <PasswordEntry ref={pa2 => this.pa2 = pa2} label="Confirme la contraseña" warning="Llenar este campo es obligatorio"/>
 		    </div>
-		    <button>Crear Cuenta</button>
+		    <button onClick={this.addAcount}>Crear Cuenta</button>
 		    <a href="/">Volver al inicio</a>
 	    </div>
 	    )

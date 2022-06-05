@@ -14,10 +14,10 @@ export default class Home extends Component {
 		fetch(`/persona/${this.password.getText()}-${this.email.getText()}`).then(result => result.json()).then(data => {
 			if(data.id){
 				if(data.user === "Reclutador"){
-					this.context.setUser({id: data.id, name: data.name});
+					this.context.setUser({id: data.id, name: data.name, lname: data.lname});
 					this.setState({redirect : true, route: "/reclutador"});
 				} else if(data.user === "Solicitante"){
-					this.context.setUser({id: data.id, name: data.name});
+					this.context.setUser({id: data.id, name: data.name, lname: data.lname});
 					this.setState({redirect : true, route: "/solicitante"});
 				}
 			} else alert("El usuario o la contraseña son incorrectos");
