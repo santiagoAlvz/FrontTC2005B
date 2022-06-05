@@ -1,7 +1,9 @@
 import React from 'react'
 import { Outlet, Link } from "react-router-dom";
+import UserContext from '../contexts/UserContext.js';
 
 const LayoutSolicitante = () => {
+  const user =  React.useContext(UserContext);
   return (
     <>
       <nav className="NavBar">
@@ -20,6 +22,8 @@ const LayoutSolicitante = () => {
           </li>
         </ul>
       </nav>
+
+      <header>{user.user.name} {user.user.lname}</header>
 
       <Outlet />
     </>

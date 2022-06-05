@@ -8,7 +8,6 @@ export default class DashboardReclutador extends Component {
 		return(
 			<>
 			<h1>Dashboard Reclutador</h1>
-			<p>Has iniciado sesión como {this.context.user.name} {this.context.user.lname}</p>
 			</>
 		)
 	}

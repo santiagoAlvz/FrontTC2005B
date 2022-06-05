@@ -1,13 +1,15 @@
 import React from 'react'
 import { Outlet, Link } from "react-router-dom";
+import UserContext from '../contexts/UserContext.js';
 
 const LayoutSolicitante = () => {
-  return (
+    const user =  React.useContext(UserContext);
+    return (
     <>
       <nav className="NavBar">
         <ul>
           <li>
-            <Link to="/solicitante">DashboardSolicitante</Link>
+            <Link to="/solicitante">Tablero</Link>
           </li>
           <li>
             <Link to="/solicitante/configuracion">Configuración</Link>
@@ -24,9 +26,11 @@ const LayoutSolicitante = () => {
         </ul>
       </nav>
 
+      <header>{user.user.name} {user.user.lname}</header>
+
       <Outlet />
     </>
-  )
+    )
 };
 
 export default LayoutSolicitante;

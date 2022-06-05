@@ -60,16 +60,19 @@ app.post("/solicitante", (req, res) => {
 				});
 			});
 	});
+});
 
-	/*con.query("SELECT idReclutador FROM reclutador WHERE persona="+req.body.id+";", function (err2, result2) {
-		if(err2) throw err2;
-		if(result2.length > 0){
-			con.query("INSERT INTO vacante(nombre, descripcion,fechaLimite,fechaPublicacion, reclutador, requisitos) VALUES ('"+req.body.name+"','"+req.body.desc+"','"+req.body.expires+"',CURDATE(),"+result2[0].idReclutador+",'"+req.body.requirements+"')", function (err, result){
-				if(err) throw err
-				res.json({message: "Correct"})
-			});
-		} else res.json({message: "Error"})
-	});*/
+//Obtiene las solicitudes realizadas por un solicitante en particular
+app.get("/solicitud/:id", (req, res) => {
+	con.query("SELECT idSolicitud, nombre, nombreComercial, DATE_FORMAT(fecha, '%d-%b-%Y'), estado "+
+						"FROM (((solicitud JOIN solicitante ON solicitud.solicitante = solicitante.idSolicitante) "+
+							"JOIN vacante ON solicitud.vacante = vacante.idVacante) "+
+							"JOIN reclutador ON vacante.reclutador = reclutador.idReclutador) "+
+							"JOIN empresa ON reclutador.empresa = empresa.idEmpresa "+
+						"WHERE solicitante.persona = "+req.params.id+";", function(err, result){
+								if(err) throw err;
+								res.json({content: result});
+						});
 });
 
 

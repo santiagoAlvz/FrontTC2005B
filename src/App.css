@@ -14,8 +14,7 @@ tr {
 }
 
 th {
-  padding-left: 1em;
-  padding-right: 1em;
+  padding: 0.5em;
 }
 
 p { margin-top: 0;  margin-bottom: 0;}
@@ -42,10 +41,32 @@ input {
   height: 2em;
 }
 
+textarea {
+  background-color: #F5F8FA;
+  border-style:  solid;
+  border-color:  #CBD6E2;
+  text-align: center;
+  border-radius: 0.5em;
+}
+
 form {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.yellowStatus {
+  color: white;
+  background-color: orange;
+  border-radius: 1em;
+  padding: 0.4em;
+}
+
+.redStatus {
+  color: white;
+  background-color: red;
+  border-radius: 1em;
+  padding: 0.4em;
 }
 
 .Box {
@@ -59,6 +80,19 @@ form {
 
 .NavBar {
   background-color: lightblue;
+}
+
+.NavBar ul{
+  list-style-type: none;
+}
+
+.NavBar li {
+  padding-bottom: 10px;
+}
+
+.NavBar a{
+  text-decoration: none;
+  padding-bottom: 20px;
 }
 
 .green {
