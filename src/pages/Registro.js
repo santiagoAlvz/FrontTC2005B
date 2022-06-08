@@ -7,26 +7,48 @@ import MandatoryEntry from '../components/MandatoryEntry.js';
 import NonMandatoryEntry from '../components/NonMandatoryEntry.js';
 import DateEntry from '../components/DateEntry.js';
 import PhoneEntry from '../components/PhoneEntry.js';
+import Alert from '../components/Alert.js';
 
 export default class Registro extends Component {
+	state = {
+		enableAlert: false
+	}
 
 	sexSelected = (event) => {
 		this.setState({sex: event.target.value});
 	}
 
 	addAcount = () => {
-		if(this.pa1.getText() === this.pa2.getText()){
-			const object = {name: this.nom.getText(), last1: this.ap1.getText(), last2: this.ap2.getText(), email: this.ema.getText(), birth: this.nac.getText(), phone: this.num.getText(), password: this.pa1.getText(), state: this.civ.getText(), notify: this.not.getText(), sex: this.state.sex};
-			fetch('/solicitante',{method: 'POST', body: JSON.stringify(object), headers: {'Content-Type': 'application/json'}});
+		if(this.pa1.getText() === this.pa2.getText() || this.pa1.getText() == null){
+			const data = {name: this.nom.getText(), last1: this.ap1.getText(), last2: this.ap2.getText(), email: this.ema.getText(), birth: this.nac.getText(), phone: this.num.getText(), password: this.pa1.getText(), state: this.civ.getText(), notify: this.not.getText(), sex: this.state.sex};
+			if(data.password == null){
+				this.setState({enableAlert: true, alert: "La contraseña no cumple con los requisitos", alertType: "error"});
+				return;
+			}
+
+			Object.keys(data).map(key => {
+				if(data[key] == null){
+					this.setState({enableAlert: true, alert: "Hay campos obligatorios que faltan por llenar", alertType: "error"});
+					return;
+				}
+			});
+
+			fetch('/solicitante',{method: 'POST', body: JSON.stringify(data), headers: {'Content-Type': 'application/json'}})
+				.then(response => response.json()).then( data => {
+					if(data.message && data.message == "Correct"){
+						this.setState({enableAlert: true, alert: "Su cuenta se ha creado exitosamente", alertType: "success"});
+					} else this.setState({enableAlert: true, alert: "Ha ocurrido un error", alertType: "error"});
+				});
 
 		} else
-			alert("Las dos contraseñas no son iguales");
+			this.setState({enableAlert: true, alert: "Las contraseñas no son iguales", alertType: "error"});
 	}
 
 	render(){
 
 		return(
 		<div>
+			{this.state.enableAlert ? <Alert message={this.state.alert} type={this.state.alertType}/> : null}
 			<h1>Registro</h1>
 		    <div className="flexible">
 			    <MandatoryEntry ref={nom => this.nom = nom} label="Nombre(s)" warning="Llenar este campo es obligatorio"/>

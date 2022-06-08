@@ -11,7 +11,9 @@ export default class PasswordCreateEntry extends Component {
 	state = {text: "", length: false, upper: false, lower: false, number : false, symbols : false}
 
 	getText = () => {
-		return this.state.text;
+		if (this.state.length && this.state.upper && this.state.lower && this.state.number && this.state.number && this.state.symbols){
+			return this.state.text;
+		} else return null;
 	}
 
 	verify = event => {

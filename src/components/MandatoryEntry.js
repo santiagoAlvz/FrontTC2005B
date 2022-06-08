@@ -4,7 +4,9 @@ export default class MandatoryEntry extends Component {
 	state = {text: "", valid: false}
 
 	getText = () => {
-		return this.state.text;
+		if(this.state.text.length > 0){
+			return this.state.text;
+		} return null;
 	}
 
 	verify = event => {

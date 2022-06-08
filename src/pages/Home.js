@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import  { Navigate } from 'react-router-dom'
 import EmailEntry from '../components/EmailEntry.js';
 import PasswordEntry from '../components/PasswordEntry.js';
+import Alert from '../components/Alert.js';
 import UserContext from '../contexts/UserContext.js';
+
 
 
 export default class Home extends Component {
@@ -20,13 +22,15 @@ export default class Home extends Component {
 					this.context.setUser({id: data.id, name: data.name, lname: data.lname});
 					this.setState({redirect : true, route: "/solicitante"});
 				}
-			} else alert("El usuario o la contraseña son incorrectos");
+			} else this.setState({enableAlert: true, alert: "El usuario o la contraseña son incorrectos", alertType: "error"});//alert("El usuario o la contraseña son incorrectos");
 		});
 	}
 
 	render(){
 		return(
+			
 			<div>
+				{this.state.enableAlert ? <Alert message={this.state.alert} type={this.state.alertType}/> : null}
 				<h1>Página de Inicio</h1>
 				<EmailEntry ref={email => this.email = email} label="Correo Electrónico"/>
 				<PasswordEntry ref={password => this.password = password} label="Contraseña"/>
