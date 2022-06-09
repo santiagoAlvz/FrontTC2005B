@@ -42,9 +42,9 @@ app.post("/vacante", (req, res) => {
 		if(result2.length > 0){
 			con.query("INSERT INTO vacante(nombre, descripcion,fechaLimite,fechaPublicacion, reclutador, requisitos) VALUES ('"+req.body.name+"','"+req.body.desc+"','"+req.body.expires+"',CURDATE(),"+result2[0].idReclutador+",'"+req.body.requirements+"')", function (err, result){
 				if(err) throw err
-				res.json({message: "Correct"})
+				res.json({message: "Correct"});
 			});
-		} else res.json({message: "Error"})
+		} else res.json({message: "Error"});
 	});
 });
 

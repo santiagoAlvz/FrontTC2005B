@@ -26,12 +26,12 @@ export default class Registro extends Component {
 				return;
 			}
 
-			Object.keys(data).map(key => {
+			for(var key in data){
 				if(data[key] == null){
 					this.setState({enableAlert: true, alert: "Hay campos obligatorios que faltan por llenar", alertType: "error"});
 					return;
 				}
-			});
+			}
 
 			fetch('/solicitante',{method: 'POST', body: JSON.stringify(data), headers: {'Content-Type': 'application/json'}})
 				.then(response => response.json()).then( data => {

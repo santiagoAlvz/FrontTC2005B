@@ -16,12 +16,18 @@ export default class CrearVacante extends Component {
 	addVacant = () => {
 		const data = {name: this.nom.getText(), desc: this.desc.getText(), expires: this.exp.getText(), id: this.context.user.id, requirements: this.req.getText()};
 
-		Object.keys(data).map(key => {
+		for(var key in data){
 			if(data[key] == null){
 				this.setState({enableAlert: true, alert: "Hay campos obligatorios que faltan por llenar", alertType: "error"});
 				return;
 			}
-		});
+		}
+		/*Object.keys(data).map(key => {
+			if(data[key] == null){
+				this.setState({enableAlert: true, alert: "Hay campos obligatorios que faltan por llenar", alertType: "error"});
+				return;
+			}
+		});*/
 
 		fetch('/vacante',{method: 'POST', body: JSON.stringify(data), headers: {'Content-Type': 'application/json'}})
 			.then(response => response.json()).then(responseData => {
