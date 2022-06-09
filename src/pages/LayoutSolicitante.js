@@ -12,9 +12,6 @@ const LayoutSolicitante = () => {
             <Link to="/solicitante">Tablero</Link>
           </li>
           <li>
-            <Link to="/solicitante/configuracion">Configuración</Link>
-          </li>
-          <li>
             <Link to="/solicitante/solicitud">Crear Solicitud</Link>
           </li>
           <li>

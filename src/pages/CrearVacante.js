@@ -22,12 +22,6 @@ export default class CrearVacante extends Component {
 				return;
 			}
 		}
-		/*Object.keys(data).map(key => {
-			if(data[key] == null){
-				this.setState({enableAlert: true, alert: "Hay campos obligatorios que faltan por llenar", alertType: "error"});
-				return;
-			}
-		});*/
 
 		fetch('/vacante',{method: 'POST', body: JSON.stringify(data), headers: {'Content-Type': 'application/json'}})
 			.then(response => response.json()).then(responseData => {

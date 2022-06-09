@@ -12,9 +12,6 @@ const LayoutSolicitante = () => {
             <Link to="/reclutador">Solicitudes</Link>
           </li>
           <li>
-            <Link to="/reclutador/configuracion">Configuración</Link>
-          </li>
-          <li>
             <Link to="/reclutador/vacante">Crear Vacante</Link>
           </li>
           <li>

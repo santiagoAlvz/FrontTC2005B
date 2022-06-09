@@ -32,13 +32,11 @@ function App() {
         <Route path="/registro" element={<Registro/>}/>
         <Route path="/solicitante" element={<LayoutSolicitante/>}>
           <Route index element={<DashboardSolicitante/>}/>
-          <Route path="configuracion" element={<ConfiguracionSolicitante/>}/>
           <Route path="solicitud" element={<CrearSolicitud/>}/>
           <Route path="perfil" element={<PerfilProfesional/>}/>
         </Route>
         <Route path="/reclutador" element={<LayoutReclutador/>}>
           <Route index element={<DashboardReclutador/>}/>
-          <Route path="configuracion" element={<ConfiguracionReclutador/>}/>
           <Route path="vacante" element={<CrearVacante/>}/>
         </Route>
       </Routes>

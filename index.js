@@ -75,6 +75,29 @@ app.get("/solicitud/:id", (req, res) => {
 						});
 });
 
+//Obtiene las vacantes disponibles
+app.get("/vacante", (req, res) => {
+	con.query("SELECT idVacante, nombre, nombreComercial, DATE_FORMAT(fechaPublicacion, '%d-%b-%Y'), DATE_FORMAT(fechaLimite, '%d-%b-%Y'), descripcion, requisitos "+
+		"FROM (vacante JOIN reclutador ON vacante.reclutador = reclutador.idReclutador) "+
+  	"JOIN empresa ON reclutador.empresa = empresa.idEmpresa "+
+  	"WHERE fechaLimite > curdate();", function(err, result){
+  		if(err) throw err;
+  		res.json({content: result});
+	});
+});
+
+app.post("/solicitud", (req, res) => {
+	con.query("SELECT idSolicitante FROM solicitante WHERE persona="+req.body.id+";", function (err2, result2) {
+		if(err2) throw err2;
+		if(result2.length > 0){
+		con.query("INSERT INTO solicitud(vacante, solicitante, fecha, estado) "+
+			"VALUES ("+req.body.vacante+", "+result2[0].idSolicitante+",CURDATE(), 'Sin Revisar');", function(err, result) {
+				if(err) throw err;
+				res.json({message: "Correct"});
+			});
+		}
+	});
+});
 
 app.listen(PORT, () => {
 	console.log(`Server listening on ${PORT}`);

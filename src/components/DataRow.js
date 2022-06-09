@@ -7,7 +7,7 @@ export default class DataRow extends Component{
 		return(
 			<tr>
 				{Object.keys(this.props.info).map(key => 
-						<th>{key != this.props.status ? this.props.info[key]: <StatusBadge text={this.props.info[key]} style={this.props.statusStyle[this.props.info[key]]}/>}</th>
+						<td>{key != this.props.status ? this.props.info[key]: <StatusBadge text={this.props.info[key]} style={this.props.statusStyle[this.props.info[key]]}/>}</td>
 				)}
 			</tr>
 		);

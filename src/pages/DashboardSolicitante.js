@@ -14,7 +14,7 @@ export default class DashboardSolicitante extends Component {
 	
 	render(){
 
-		const statusStyle = {"En Proceso": "yellowStatus", "Sin Revisar": "redStatus"};
+		const statusStyle = {"En Proceso": "yellowStatus", "Sin Revisar": "redStatus", "Revisado" : "greenStatus"};
 
 		return(
 			<>
