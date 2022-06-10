@@ -99,6 +99,35 @@ app.post("/solicitud", (req, res) => {
 	});
 });
 
+app.get("/expAcademica/:id", (req, res) => {
+	con.query("SELECT idExpAcademica, nombre,  DATE_FORMAT(fechaInicio, '%d-%b-%Y') AS fechaInicio, DATE_FORMAT(fechaFin, '%d-%b-%Y') AS fechaFin, institucion, comentarios "+
+						"FROM expAcademica JOIN solicitante ON expAcademica.solicitante = solicitante.idSolicitante "+
+						"WHERE solicitante.persona = "+req.params.id+";", function(err, result){
+								if(err) throw err;
+								res.json({content: result});
+						});
+});
+
+app.delete("/expAcademica/:idExp", (req, res) => {
+	con.query("DELETE FROM expAcademica WHERE idExpAcademica = "+req.params.idExp+";", function(err, result){
+		if(err) throw err;
+		res.json({message: "Correct"});
+	});
+});
+
+app.post("/expAcademica/:id", (req, res) => {
+	con.query("SELECT idSolicitante FROM solicitante WHERE persona="+req.params.id+";", function (err2, result2){
+		if(err2) throw err2;
+		if(result2.length > 0){
+			con.query("INSERT INTO expAcademica(nombre, fechaInicio, fechaFin, institucion, comentarios, solicitante) "+
+					"VALUES ('"+req.body.name+"','"+req.body.startDate+"','"+req.body.endDate+"','"+req.body.institution+"','"+req.body.comments+"',"+result2[0].idSolicitante+");", function(err, result){
+						if(err) throw err;
+						res.json({message: "Correct"});
+			});
+		}
+	});
+});
+
 app.listen(PORT, () => {
 	console.log(`Server listening on ${PORT}`);
 });
