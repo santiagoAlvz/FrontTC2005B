@@ -22,7 +22,7 @@ const LayoutSolicitante = () => {
 
       <header>{user.user.name} {user.user.lname}</header>
 
-      <Outlet />
+      <Outlet className="content"/>
     </>
   )
 };

@@ -25,7 +25,7 @@ export default class CrearVacante extends Component {
 
 		fetch('/vacante',{method: 'POST', body: JSON.stringify(data), headers: {'Content-Type': 'application/json'}})
 			.then(response => response.json()).then(responseData => {
-				if(responseData.message && responseData.message == "Correct"){
+				if(responseData.message && responseData.message === "Correct"){
 					this.setState({enableAlert: true, alert: "La vacante se ha creado exitosamente", alertType: "success"});
 				} else this.setState({enableAlert: true, alert: "Ha ocurrido un error", alertType: "error"});
 			});
@@ -33,6 +33,7 @@ export default class CrearVacante extends Component {
 
 	render(){
 		return(
+			<div className="pageContent">
 			<>
 			{this.state.enableAlert ? <Alert message={this.state.alert} type={this.state.alertType}/> : null}
 			<h1>Crear Vacante</h1>
@@ -44,7 +45,7 @@ export default class CrearVacante extends Component {
 			</div>
 			<button onClick={this.addVacant}>Crear Vacante</button>
 			</>
-			//idvacante, reclutador, fechaP, fechaL, desc, requisitos
+			</div>
 		)
 	}
 }

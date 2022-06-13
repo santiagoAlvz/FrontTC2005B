@@ -1,6 +1,4 @@
 import React, {Component} from 'react'
-import StatusBadge from './StatusBadge.js'
-import DataRow from './DataRow.js';
 import Alert from './Alert.js';
 import UserContext from '../contexts/UserContext.js';
 
@@ -17,7 +15,7 @@ export default class DataRowWithDetails extends Component{
 		const data = {id: this.context.user.id , vacante: this.props.info.idVacante};
 		fetch("/solicitud", {method: 'POST', body: JSON.stringify(data),  headers: {'Content-Type': 'application/json'}})
 			.then(response => response.json()).then(responseData => {
-				if(responseData.message && responseData.message == "Correct"){
+				if(responseData.message && responseData.message === "Correct"){
 					this.setState({enableAlert: true, alert: "Se ha aplicado exitosamente a la vacante", alertType: "success"});
 				} else this.setState({enableAlert: true, alert: "Ha ocurrido un error", alertType: "error"});
 			});
@@ -29,7 +27,7 @@ export default class DataRowWithDetails extends Component{
 			<>
 			<tr>
 				{Object.keys(this.props.info).map(key => 
-						<td>{(!this.props.details.includes(key)) ? this.props.info[key] : null}</td>
+						<td key={key}>{(!this.props.details.includes(key)) ? this.props.info[key] : null}</td>
 				)}
 				<td><button onClick={this.show}>Mostrar detalles</button></td>
 			</tr>

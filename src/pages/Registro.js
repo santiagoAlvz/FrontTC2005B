@@ -35,7 +35,7 @@ export default class Registro extends Component {
 
 			fetch('/solicitante',{method: 'POST', body: JSON.stringify(data), headers: {'Content-Type': 'application/json'}})
 				.then(response => response.json()).then( data => {
-					if(data.message && data.message == "Correct"){
+					if(data.message && data.message === "Correct"){
 						this.setState({enableAlert: true, alert: "Su cuenta se ha creado exitosamente", alertType: "success"});
 					} else this.setState({enableAlert: true, alert: "Ha ocurrido un error", alertType: "error"});
 				});

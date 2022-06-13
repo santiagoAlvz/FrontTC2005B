@@ -17,7 +17,7 @@ export default class DashboardSolicitante extends Component {
 		const statusStyle = {"En Proceso": "yellowStatus", "Sin Revisar": "redStatus", "Revisado" : "greenStatus"};
 
 		return(
-			<>
+			<div className="pageContent">
 			<h1>Dashboard Solicitante</h1>
 
 			{this.state.aplications.length > 0 ?
@@ -30,10 +30,10 @@ export default class DashboardSolicitante extends Component {
 					<th>Fecha de Aplicación</th>
 					<th>Status</th>
 					</tr>
-					{this.state.aplications.map(aplication => (<DataRow info={aplication} status="estado" statusStyle={statusStyle}/>))}
+					{this.state.aplications.map(aplication => (<DataRow key={aplication.idSolicitud} info={aplication} status="estado" statusStyle={statusStyle}/>))}
 				</thead>
 			</table> : <p>No tienes ninguna solicitud activa</p>}
-			</>
+			</div>
 		);
 	}
 }

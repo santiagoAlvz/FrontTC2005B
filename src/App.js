@@ -4,12 +4,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 //Importación de Páginas
 import Registro from './pages/Registro.js';
 import DashboardSolicitante from './pages/DashboardSolicitante.js';
-import ConfiguracionSolicitante from './pages/ConfiguracionSolicitante.js';
 import CrearSolicitud from './pages/CrearSolicitud.js';
 import PerfilProfesional from './pages/PerfilProfesional.js';
 import Home from './pages/Home.js';
 import DashboardReclutador from './pages/DashboardReclutador.js';
-import ConfiguracionReclutador from './pages/ConfiguracionReclutador.js';
 import CrearVacante from './pages/CrearVacante.js';
 
 //Importación de barras de navegación

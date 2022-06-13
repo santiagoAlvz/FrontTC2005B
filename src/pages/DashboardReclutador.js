@@ -6,9 +6,11 @@ export default class DashboardReclutador extends Component {
 
 	render(){
 		return(
+			<div className="pageContent">
 			<>
 			<h1>Dashboard Reclutador</h1>
 			</>
+			</div>
 		)
 	}
 }

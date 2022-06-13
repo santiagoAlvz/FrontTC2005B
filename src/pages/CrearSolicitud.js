@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import DataRow from '../components/DataRow.js'
 import DataRowWithDetails from '../components/DataRowWithDetails.js'
 
 
@@ -14,6 +13,7 @@ export default class CrearSolicitud extends Component {
 
 	render(){
 		return(
+			<div className="pageContent">
 			<>
 			<h1>Crear Solicitud </h1>
 			{this.state.vacants.length > 0 ?
@@ -26,10 +26,11 @@ export default class CrearSolicitud extends Component {
 					<th>Fecha Publicación</th>
 					<th>Fecha Límite</th>
 					</tr>
-					{this.state.vacants.map(vacant => (<DataRowWithDetails info={vacant} details={['descripcion', 'requisitos']} appliable={true} applyAdress="/solicitud"/>))}
+					{this.state.vacants.map(vacant => (<DataRowWithDetails key={vacant.idVacante} info={vacant} details={['descripcion', 'requisitos']} appliable={true} applyAdress="/solicitud"/>))}
 				</thead>
 			</table> : <p>No hay ninguna vacante disponible activa</p>}
 			</>
+			</div>
 		)
 	}
 }

@@ -30,7 +30,7 @@ export default class AcademicExperience extends Component {
           </tr>
         </thead>
         <tbody>
-          {this.state.experience.map(register => (<AcademicExperienceItem info={register} updateList={this.updateList.bind(this)}/>))}
+          {this.state.experience.map(register => (<AcademicExperienceItem key={register.idExpAcademica} info={register} updateList={this.updateList.bind(this)}/>))}
           <EditableRow updateList={this.updateList.bind(this)}/>
         </tbody>
       </table>

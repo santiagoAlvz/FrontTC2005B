@@ -59,6 +59,12 @@ form {
   justify-content: center;
 }
 
+header {
+  text-align: right;
+  font-weight: bold;
+  padding-right: 2em;
+}
+
 .yellowStatus {
   color: white;
   background-color: orange;
@@ -83,16 +89,24 @@ form {
 }
 
 .NavBar {
-  background-color: lightblue;
+  text-decoration: none;
+  position: fixed;
+  width: 200px;
+  height: 100%;
+  background-color: #329eb9;
+  left: 0px;
+  top:  0px;
 }
 
-.NavBar ul{
+.NavBar ul li{
+  color: rgba(100, 100, 100, .3);
+  text-align: left;
+  padding: 15px 10px;
+  list-style: none;
   list-style-type: none;
+  border-bottom: 1px solid rgba(100, 100, 100, .3);
 }
 
-.NavBar li {
-  padding-bottom: 10px;
-}
 
 .NavBar a{
   text-decoration: none;
@@ -118,4 +132,8 @@ form {
 .entry-div {
   flex-grow: 1;
   margin-bottom: 30px;
+}
+
+.pageContent {
+  padding-left: 220px;
 }
