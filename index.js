@@ -63,8 +63,8 @@ app.post("/solicitante", (req, res) => {
 });
 
 //Obtiene las solicitudes realizadas por un solicitante en particular
-app.get("/solicitud/:id", (req, res) => {
-	con.query("SELECT idSolicitud, nombre, nombreComercial, DATE_FORMAT(fecha, '%d-%b-%Y'), estado "+
+app.get("/solicitud/persona/:id", (req, res) => {
+	con.query("SELECT idSolicitud, nombre, nombreComercial, DATE_FORMAT(fecha, '%d/%b/%Y'), estado "+
 						"FROM (((solicitud JOIN solicitante ON solicitud.solicitante = solicitante.idSolicitante) "+
 							"JOIN vacante ON solicitud.vacante = vacante.idVacante) "+
 							"JOIN reclutador ON vacante.reclutador = reclutador.idReclutador) "+
@@ -77,7 +77,7 @@ app.get("/solicitud/:id", (req, res) => {
 
 //Obtiene las vacantes disponibles
 app.get("/vacante", (req, res) => {
-	con.query("SELECT idVacante, nombre, nombreComercial, DATE_FORMAT(fechaPublicacion, '%d-%b-%Y'), DATE_FORMAT(fechaLimite, '%d-%b-%Y'), descripcion, requisitos "+
+	con.query("SELECT idVacante, nombre, nombreComercial, DATE_FORMAT(fechaPublicacion, '%d/%b/%Y'), DATE_FORMAT(fechaLimite, '%d/%b/%Y'), descripcion, requisitos "+
 		"FROM (vacante JOIN reclutador ON vacante.reclutador = reclutador.idReclutador) "+
   	"JOIN empresa ON reclutador.empresa = empresa.idEmpresa "+
   	"WHERE fechaLimite > curdate();", function(err, result){
@@ -99,8 +99,9 @@ app.post("/solicitud", (req, res) => {
 	});
 });
 
-app.get("/expAcademica/:id", (req, res) => {
-	con.query("SELECT idExpAcademica, nombre,  DATE_FORMAT(fechaInicio, '%d-%b-%Y') AS fechaInicio, DATE_FORMAT(fechaFin, '%d-%b-%Y') AS fechaFin, institucion, comentarios "+
+//Endpoints relacionados a la experiencia académica
+app.get("/expAcademica/persona/:id", (req, res) => {
+	con.query("SELECT idExpAcademica, nombre,  DATE_FORMAT(fechaInicio, '%d/%b/%Y') AS fechaInicio, DATE_FORMAT(fechaFin, '%d/%b/%Y') AS fechaFin, institucion, comentarios "+
 						"FROM expAcademica JOIN solicitante ON expAcademica.solicitante = solicitante.idSolicitante "+
 						"WHERE solicitante.persona = "+req.params.id+";", function(err, result){
 								if(err) throw err;
@@ -115,7 +116,7 @@ app.delete("/expAcademica/:idExp", (req, res) => {
 	});
 });
 
-app.post("/expAcademica/:id", (req, res) => {
+app.post("/expAcademica/persona/:id", (req, res) => {
 	con.query("SELECT idSolicitante FROM solicitante WHERE persona="+req.params.id+";", function (err2, result2){
 		if(err2) throw err2;
 		if(result2.length > 0){
@@ -126,6 +127,92 @@ app.post("/expAcademica/:id", (req, res) => {
 			});
 		}
 	});
+});
+
+//Endpoints relacionados a la experiencia laboral
+app.get("/expLaboral/persona/:id", (req, res) => {
+	con.query("SELECT idExpLaboral, lugarDeLabor, nombreDelPuesto,  DATE_FORMAT(fechaInicio, '%d/%b/%Y') AS fechaInicio, DATE_FORMAT(fechaFin, '%d/%b/%Y') AS fechaFin, actividadesRealizadas, comentarios "+
+						"FROM expLaboral JOIN solicitante ON expLaboral.solicitante = solicitante.idSolicitante "+
+						"WHERE solicitante.persona = "+req.params.id+";", function(err, result){
+								if(err) throw err;
+								res.json({content: result});
+						});
+});
+
+app.delete("/expLaboral/:idExp", (req, res) => {
+	con.query("DELETE FROM expLaboral WHERE idExpLaboral = "+req.params.idExp+";", function(err, result){
+		if(err) throw err;
+		res.json({message: "Correct"});
+	});
+});
+
+app.post("/expLaboral/persona/:id", (req, res) => {
+	con.query("SELECT idSolicitante FROM solicitante WHERE persona="+req.params.id+";", function (err2, result2){
+		if(err2) throw err2;
+		if(result2.length > 0){
+			con.query("INSERT INTO expLaboral(lugarDeLabor, nombreDelPuesto,  fechaInicio, fechaFin, actividadesRealizadas, comentarios, solicitante) "+
+					"VALUES ('"+req.body.lugarDeLabor+"','"+req.body.nombreDelPuesto+"','"+req.body.startDate+"','"+req.body.endDate+"','"+req.body.actividadesRealizadas+"','"+req.body.comments+"',"+result2[0].idSolicitante+");", function(err, result){
+						if(err) throw err;
+						res.json({message: "Correct"});
+			});
+		}
+	});
+});
+
+//Endpoints relacionados a las habilidades
+app.get("/skills/persona/:id", (req, res) => {
+	con.query("SELECT idSkills, habilidad, nivelDeDominio "+
+						"FROM skills JOIN solicitante ON skills.solicitante = solicitante.idSolicitante "+
+						"WHERE solicitante.persona = "+req.params.id+";", function(err, result){
+								if(err) throw err;
+								res.json({content: result});
+						});
+});
+
+app.delete("/skills/:idExp", (req, res) => {
+	con.query("DELETE FROM skills WHERE idSkills = "+req.params.idExp+";", function(err, result){
+		if(err) throw err;
+		res.json({message: "Correct"});
+	});
+});
+
+app.post("/skills/persona/:id", (req, res) => {
+	con.query("SELECT idSolicitante FROM solicitante WHERE persona="+req.params.id+";", function (err2, result2){
+		if(err2) throw err2;
+		if(result2.length > 0){
+			con.query("INSERT INTO skills(habilidad, nivelDeDominio, solicitante) "+
+					"VALUES ('"+req.body.habilidad+"',"+req.body.nivelDeDominio+","+result2[0].idSolicitante+");", function(err, result){
+						if(err) throw err;
+						res.json({message: "Correct"});
+			});
+		}
+	});
+});
+
+app.get("/vacante/persona/:id", (req, res) => {
+	con.query("SELECT vacante.nombre, idVacante, DATE_FORMAT(fechaLimite, '%d/%b/%Y') AS fechaLimite "+
+		"FROM vacante JOIN reclutador ON vacante.reclutador = reclutador.idReclutador "+
+		"WHERE reclutador.persona = "+req.params.id+" ;", function(err, result){
+			if(err) throw err;
+			res.json({content: result});
+		});
+});
+
+app.get("/solicitud/vacante/:id", (req, res) => {
+	con.query("SELECT idSolicitud, solicitud.fecha, persona.nombre, persona.primerApellido, persona.segundoApellido, telefono, correo, idPersona "+
+						"FROM (solicitud JOIN solicitante ON solicitante.idSolicitante = solicitud.solicitante) "+
+						"	JOIN persona ON persona.idPersona = solicitante.persona "+
+						"WHERE solicitud.vacante = " +req.params.id+ " AND solicitud.estado != 'Revisada';", function(err, result){
+		if(err) throw err;
+		res.json({content: result});
+	});
+});
+
+app.put("/solicitud/marcarEnProceso/:id", (req, res) => {
+	con.query("UPDATE solicitud SET estado = 'En Proceso' WHERE idSolicitud = "+req.params.id+";", function(err, result){
+		if(err) throw err;
+		res.json({message: "Correct"});
+	})
 });
 
 app.listen(PORT, () => {

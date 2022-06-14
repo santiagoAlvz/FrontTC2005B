@@ -7,12 +7,12 @@ export default class AcademicExperience extends Component {
   static contextType = UserContext;
 
   componentDidMount(){
-    fetch("/expAcademica/"+this.context.user.id).then(response => response.json()).then(data => this.setState({
+    fetch("/expAcademica/persona/"+this.context.user.id).then(response => response.json()).then(data => this.setState({
       experience: data.content}));
   }
 
   updateList = () => {
-    fetch("/expAcademica/"+this.context.user.id).then(response => response.json()).then(data => this.setState({
+    fetch("/expAcademica/persona/"+this.context.user.id).then(response => response.json()).then(data => this.setState({
       experience: data.content}));
   }
 
@@ -39,7 +39,7 @@ export default class AcademicExperience extends Component {
   }
 }
 
-export class AcademicExperienceItem extends Component {
+class AcademicExperienceItem extends Component {
 
   deleteAcademicInfo = () => {
     fetch("/expAcademica/"+this.props.info.idExpAcademica, {method: 'DELETE'});
@@ -60,7 +60,7 @@ export class AcademicExperienceItem extends Component {
   }
 }
 
-export class EditableRow extends Component {
+class EditableRow extends Component {
 
   static contextType = UserContext;
 
@@ -71,7 +71,7 @@ export class EditableRow extends Component {
                   institution: document.getElementById("institucion").value,
                   comments: document.getElementById("comentarios").value};
 
-    fetch("/expAcademica/"+this.context.user.id, {method: 'POST', body: JSON.stringify(data), headers: {'Content-Type': 'application/json'}});
+    fetch("/expAcademica/persona/"+this.context.user.id, {method: 'POST', body: JSON.stringify(data), headers: {'Content-Type': 'application/json'}});
     this.props.updateList();
   }
 

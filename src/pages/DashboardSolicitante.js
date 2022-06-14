@@ -7,14 +7,14 @@ export default class DashboardSolicitante extends Component {
 	static contextType = UserContext;
 
 	componentDidMount(){
-		fetch("/solicitud/"+this.context.user.id).then(response => response.json()).then(data => this.setState({
+		fetch("/solicitud/persona/"+this.context.user.id).then(response => response.json()).then(data => this.setState({
 			aplications: data.content}));
 	}
 
 	
 	render(){
 
-		const statusStyle = {"En Proceso": "yellowStatus", "Sin Revisar": "redStatus", "Revisado" : "greenStatus"};
+		const statusStyle = {"En Proceso": "yellowStatus", "Sin Revisar": "redStatus", "Revisada" : "greenStatus"};
 
 		return(
 			<div className="pageContent">
