@@ -2,7 +2,6 @@ import MandatoryEntry from './MandatoryEntry.js';
 
 export default class EmailEntry extends MandatoryEntry {
 	
-
 	verify = event => {
 
 		var text = event.target.value

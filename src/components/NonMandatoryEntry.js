@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { EntryContainer } from '../components2/EntryContainer.js';
 
 export default class NonMandatoryEntry extends Component {
 	state = {text: ""}
@@ -14,10 +15,10 @@ export default class NonMandatoryEntry extends Component {
 
 	render(){
 		return(
-			<div className="entry-div">
-			<label>{this.props.label}</label>
-			<input onChange={this.verify}></input>
-			</div>
+			<EntryContainer>
+				<label>{this.props.label}</label>
+				<input onChange={this.verify}></input>
+			</EntryContainer>
 		)
 	}
 }
