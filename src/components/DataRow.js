@@ -5,11 +5,18 @@ export default class DataRow extends Component{
 	render(){
 
 		return(
+			<>
 			<tr>
-				{Object.keys(this.props.info).map(key => 
-						<td key={key}>{key !== this.props.status ? this.props.info[key]: <StatusBadge text={this.props.info[key]} style={this.props.statusStyle[this.props.info[key]]}/>}</td>
-				)}
+				<td>{this.props.info.idSolicitud}</td>
+				<td>{this.props.info.nombre}</td>
+				<td>{this.props.info.nombreComercial}</td>
+				<td>{this.props.info.fecha}</td>
+				<td><StatusBadge text={this.props.info.estado} style={this.props.statusStyle[this.props.info.estado]}/></td>
 			</tr>
+			<tr style={this.props.info.estado === "Revisada" ? {backgroundColor: 'lightblue'} : {display: 'none'}}>
+				<td colSpan="5">{this.props.info.comentarios}</td>
+			</tr>
+			</>
 		);
 	}
 }

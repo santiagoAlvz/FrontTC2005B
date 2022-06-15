@@ -26,19 +26,24 @@ export default class DataRowWithDetails extends Component{
 		return(
 			<>
 			<tr>
-				{Object.keys(this.props.info).map(key => 
-						<td key={key}>{(!this.props.details.includes(key)) ? this.props.info[key] : null}</td>
-				)}
+				<td>{this.props.info.idVacante}</td>
+				<td>{this.props.info.nombre}</td>
+				<td>{this.props.info.nombreComercial}</td>
+				<td>{this.props.info.fechaPublicacion}</td>
+				<td>{this.props.info.fechaLimite}</td>
 				<td><button onClick={this.show}>Mostrar detalles</button></td>
 			</tr>
 			<tr style={this.state.showDetails ? {backgroundColor: "lightblue"} : {display: "none"} }>
 			<td colSpan={Object.keys(this.props.info).length + 1}>
-			{this.props.details.map(key => 
-				<>
-				<h3>{key.replace(/^\w/, c => c.toUpperCase())}</h3>
-				<p>{this.props.info[key]}</p>
-				</>
-			)}
+				<h3>Descripción</h3>
+				<p>{this.props.info.descripcion}</p>
+
+				<h3>Requisitos</h3>
+				<p>{this.props.info.requisitos}</p>
+
+				<h3>Empresa</h3>
+				<p><b>{this.props.info.nombreComercial}</b> ({this.props.info.nombreFiscal}).<br/> País: {this.props.info.pais}.<br/>Área: {this.props.info.area}</p>
+
 			{this.props.appliable ? <button onClick={this.apply}>Aplicar</button> : null}
 			{this.state.enableAlert ? <Alert message={this.state.alert} type={this.state.alertType}/> : null}
 			</td>

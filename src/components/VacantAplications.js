@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Alert from '../components/Alert.js';
 
 export default class VacantAplications extends Component{
 	state = {aplications: []};
@@ -35,7 +36,13 @@ export default class VacantAplications extends Component{
 }
 
 class SingleAplication extends Component {
-	state = {showDetails: false, academicExperience: [], laboralExperience: [], skills:[]};
+	state = {showDetails: false,
+		academicExperience: [],
+		laboralExperience: [],
+		skills:[],
+		enableAlert: false,
+		comment: ""
+	};
 
 	componentDidMount(){
 	    fetch("/expAcademica/persona/"+this.props.data.idPersona).then(response => response.json())
@@ -55,9 +62,30 @@ class SingleAplication extends Component {
 	    }
 	  }
 
+	markAsChecked = () => {
+		if(this.state.comment === "Personalizado"){
+			const comment = document.getElementById("personalizedComment").value;
+			if(comment.length > 0){
+				const data = {comments: comment};
+				fetch("/solicitud/marcarRevisada/"+this.props.data.idSolicitud,{method: 'PUT', body: JSON.stringify(data), headers: {'Content-Type': 'application/json'}});
+			} else {
+				this.setState({enableAlert: true, alert: "Ingresar un comentario es obligatorio", alertType: "error"});
+			}
+		} else {
+			const data = {comments: this.state.comment};
+			fetch("/solicitud/marcarRevisada/"+this.props.data.idSolicitud,{method: 'PUT', body: JSON.stringify(data), headers: {'Content-Type': 'application/json'}});
+		}
+		
+		
+	}
+
 	show = () => {
 		this.setState({showDetails: !this.state.showDetails})
 		fetch("/solicitud/marcarEnProceso/"+this.props.data.idSolicitud, {method: 'PUT'});
+	}
+
+	commentChanged = (event) => {
+		this.setState({comment: event.target.value});
 	}
 
 	render(){
@@ -109,6 +137,21 @@ class SingleAplication extends Component {
 
 			{this.state.skills.length === 0 && this.state.laboralExperience.length === 0 && this.state.academicExperience.length === 0
 				? <i>No hay Información Profesional que mostrar</i> : null}
+
+			{this.state.enableAlert ? <Alert message={this.state.alert} type={this.state.alertType}/> : null}
+			
+			<div className="flexible">
+			<p>Comentarios</p>
+			<select onChange={this.commentChanged}>
+				<option value="Gracias por tu solicitud, entraremos en contacto contigo pronto">Gracias por tu solicitud, entraremos en contacto contigo pronto</option>
+                <option value="Gracias por tu solicitud, lamentablemente, estamos buscando otras opciones">Gracias por tu solicitud, lamentablemente, estamos buscando otras opciones</option>
+                <option value="Gracias por tu interés, lamentablemente, la posición para la que aplicaste ya fue ocupada">Gracias por tu interés, lamentablemente, la posición para la que aplicaste ya fue ocupada</option>
+                <option value="Personalizado">Personalizado</option>
+			</select>
+			<input id="personalizedComment" style={ this.state.comment === "Personalizado" ? {} : {display: 'none'}}></input>
+			</div>
+			<button onClick={this.markAsChecked}>Marcar como Revisada</button>
+
 			
 			</td>
 			</tr>

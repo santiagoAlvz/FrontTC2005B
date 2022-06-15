@@ -84,6 +84,14 @@ select {
   text-align: center;
 }
 
+.verticalForm {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 0.5em;
+}
+
 .redStatus {
   color: white;
   background-color: red;
@@ -132,6 +140,8 @@ select {
 .NavBar a{
   text-decoration: none;
   padding-bottom: 20px;
+  color: white;
+  font-weight: bold;
 }
 
 .green {

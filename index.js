@@ -64,7 +64,7 @@ app.post("/solicitante", (req, res) => {
 
 //Obtiene las solicitudes realizadas por un solicitante en particular
 app.get("/solicitud/persona/:id", (req, res) => {
-	con.query("SELECT idSolicitud, nombre, nombreComercial, DATE_FORMAT(fecha, '%d/%b/%Y'), estado "+
+	con.query("SELECT idSolicitud, nombre, nombreComercial, DATE_FORMAT(fecha, '%d/%b/%Y') AS fecha, estado, comentarios "+
 						"FROM (((solicitud JOIN solicitante ON solicitud.solicitante = solicitante.idSolicitante) "+
 							"JOIN vacante ON solicitud.vacante = vacante.idVacante) "+
 							"JOIN reclutador ON vacante.reclutador = reclutador.idReclutador) "+
@@ -77,7 +77,7 @@ app.get("/solicitud/persona/:id", (req, res) => {
 
 //Obtiene las vacantes disponibles
 app.get("/vacante", (req, res) => {
-	con.query("SELECT idVacante, nombre, nombreComercial, DATE_FORMAT(fechaPublicacion, '%d/%b/%Y'), DATE_FORMAT(fechaLimite, '%d/%b/%Y'), descripcion, requisitos "+
+	con.query("SELECT idVacante, nombre, nombreComercial, DATE_FORMAT(fechaPublicacion, '%d/%b/%Y') AS fechaPublicacion, DATE_FORMAT(fechaLimite, '%d/%b/%Y') AS fechaLimite, descripcion, requisitos, nombreFiscal, pais, area "+
 		"FROM (vacante JOIN reclutador ON vacante.reclutador = reclutador.idReclutador) "+
   	"JOIN empresa ON reclutador.empresa = empresa.idEmpresa "+
   	"WHERE fechaLimite > curdate();", function(err, result){
@@ -213,6 +213,13 @@ app.put("/solicitud/marcarEnProceso/:id", (req, res) => {
 		if(err) throw err;
 		res.json({message: "Correct"});
 	})
+});
+
+app.put("/solicitud/marcarRevisada/:id", (req, res) => {
+	con.query("UPDATE solicitud SET estado = 'Revisada', comentarios = '"+req.body.comments+"' WHERE idSolicitud = "+req.params.id+";", function(err, result){
+		if(err) throw err;
+		res.json({message: "Correct"});
+	});
 });
 
 app.listen(PORT, () => {
