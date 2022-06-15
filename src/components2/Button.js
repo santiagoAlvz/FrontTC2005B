@@ -12,8 +12,8 @@ export const Button = styled.button `
    color: ${colors.white};
 
    &:hover {
-    background: ${colors.darkBlue};
-    border: 2px solid ${colors.darkBlue};
+    background: ${colors.orange};
+    border: 2px solid ${colors.orange};
    }
 `;
 

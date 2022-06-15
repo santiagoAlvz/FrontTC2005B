@@ -6,7 +6,7 @@ export const StyledHome = styled.body`
   background-color: ${colors.blue};
   display: flex;
   align-items: center;
-  padding: 150px;
+  padding: 160px;
 
   h1 {
     font-weight: 800;
@@ -14,7 +14,7 @@ export const StyledHome = styled.body`
     font-size: 2rem;
   }
 
-  div {
+  div-home {
     display: flex;
     flex-direction: column;
     padding:  20px;
