@@ -7,7 +7,6 @@ import UserContext from '../contexts/UserContext.js';
 import { Button } from '../components2/Button.js';
 import { LinkButton } from '../components2/LinkButton.js';
 import { StyledHome } from '../components2/StyledHome.js';
-import { colors } from '../components2/Theme.js';
 
 
 

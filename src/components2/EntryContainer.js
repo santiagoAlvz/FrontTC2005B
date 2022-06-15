@@ -24,7 +24,7 @@ export const EntryContainer = styled.div`
 
     p {
         margin-top: 0;
-        margin-bottom: 0;
+        margin-bottom: 20px;
         color: ${colors.red};
     }
 `;

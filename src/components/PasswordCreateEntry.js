@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Requirement from './Requirement.js';
+import { EntryContainer } from '../components2/EntryContainer.js';
 
 function hasSymbols(letter){
 	const specialChars = ['!','#','$','%','&','/','(',')','?','\\','\'','¡','¿','-','_','.',':',',',';'];
@@ -54,10 +55,12 @@ export default class PasswordCreateEntry extends Component {
  
 	render(){
 		return(
-		<div className="entry-div">
-		<label>Ingrese su nueva contraseña<span className="red">*</span></label>
+		<EntryContainer>
+		<label>Ingrese su nueva contraseña<span>*</span></label>
 		<input type="password" onChange={this.verify}></input>
-			<div className="Box">
+		</EntryContainer>
+		/*
+			<div>
 			<b>Requisitos</b>
 			<ul>
 				<li><Requirement text="Longitud de entre 10 y 32 caracteres" achieved={this.state.length}/></li>
@@ -67,7 +70,7 @@ export default class PasswordCreateEntry extends Component {
 				<li><Requirement text="Mínimo un caracter especial" achieved={this.state.symbols}/></li>
 			</ul>
 			</div>
-		</div>
+			*/
 		)
 	}
 }
