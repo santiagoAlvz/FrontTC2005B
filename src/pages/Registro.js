@@ -11,6 +11,7 @@ import Alert from '../components/Alert.js';
 import { StyledRegistro } from '../components2/StyledRegistro.js';
 import { Button } from '../components2/Button.js';
 import { LinkButton } from '../components2/LinkButton.js';
+import { EntryContainer } from '../components2/EntryContainer.js';
 
 export default class Registro extends Component {
 	state = {
@@ -55,20 +56,21 @@ export default class Registro extends Component {
 			{this.state.enableAlert ? <Alert message={this.state.alert} type={this.state.alertType}/> : null}
 			<h1>Registro</h1>
 			<MandatoryEntry ref={nom => this.nom = nom} label="Nombre(s)" warning="Llenar este campo es obligatorio"/>
-			<NonMandatoryEntry ref={ap1 => this.ap1 = ap1} label="Apellido" warning="Llenar este campo es obligatorio"/>
+			<MandatoryEntry ref={ap1 => this.ap1 = ap1} label="Apellido Paterno" warning="Llenar este campo es obligatorio"/>
 			<NonMandatoryEntry ref={ap2 => this.ap2 = ap2} label="Apellido Materno"/>
-			    <div>
-				    <label>Sexo</label>
-				    <form>
-			            <input type="radio" value="M" id="male"
-			              onChange={this.sexSelected} name="gender" />
-			              <label for="male">Masculino</label>
-
-			            <input type="radio" value="F" id="female"
-			              onChange={this.sexSelected} name="gender"/>
-			              <label for="female">Femenino</label>
-			         </form>
-		         </div>
+			<EntryContainer>
+			    <label>Sexo</label>
+			    <form>
+					<label-radio for="male">Masculino
+						<input type="radio" value="M" id="male"
+							onChange={this.sexSelected} name="gender" />
+					</label-radio>
+					<label-radio for="female">Femenino
+						<input type="radio" value="F" id="female"
+							onChange={this.sexSelected} name="gender"/>
+					</label-radio>
+		        </form>
+		    </EntryContainer>
 			<EmailEntry ref={ema => this.ema = ema} label="Correo Electrónico" warning="La dirección de correo no cumple con el formato especificado"/>
 			<DateEntry ref={nac => this.nac = nac} label="Fecha de nacimiento" warning="Llenar este campo es obligatorio"/>
 			<PhoneEntry ref={num => this.num = num} label="Número de Teléfono" warning="Llenar este campo es obligatorio"/>

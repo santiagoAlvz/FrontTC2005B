@@ -4,10 +4,21 @@ export default class NonMandatoryEntry extends Component {
 
 	render(){
 
-		const error = {backgroundColor: '#ebb2ae', padding: '0.5em', borderRadius: '0.4em'};
-		const success = {backgroundColor: '#bbeba4', padding: '0.5em', borderRadius: '0.4em'};
+		const error = {
+			backgroundColor: '#E66371',
+			padding: '0.5em',
+			borderRadius: '15px',
+			color: 'FFFFFF'
+		};
+
+		const success = {
+			backgroundColor: '#6CB708',
+			padding: '0.5em',
+			borderRadius: '15px',
+		};
+
 		return(
-			<p style={this.props.type === "error" ? error: success}>{this.props.message}</p>
+			<div style={this.props.type === "error" ? error: success}>{this.props.message}</div>
 
 		)
 	}
