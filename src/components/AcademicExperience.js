@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import UserContext from '../contexts/UserContext.js'
+import { Button } from '../components2/Button.js';
 //import AcademicExperienceItem from './AcademicExperienceItem.js'
 
 export default class AcademicExperience extends Component {
@@ -54,7 +55,7 @@ class AcademicExperienceItem extends Component {
         <td>{this.props.info.fechaFin}</td>
         <td>{this.props.info.institucion}</td>
         <td>{this.props.info.comentarios}</td>
-        <td><button onClick={this.deleteAcademicInfo}>Eliminar</button></td>
+        <td><Button onClick={this.deleteAcademicInfo}>Eliminar</Button></td>
       </tr>
     );
   }
@@ -83,7 +84,7 @@ class EditableRow extends Component {
         <td><input id="fechaFin" type="date"/></td>
         <td><input id="institucion"/></td>
         <td><textarea id="comentarios" rows="3"/></td>
-        <td><button onClick={this.addAcademicInfo}>Añadir</button></td>
+        <td><Button onClick={this.addAcademicInfo}>Añadir</Button></td>
       </tr>
     )
   }

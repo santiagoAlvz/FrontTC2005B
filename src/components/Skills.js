@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import UserContext from '../contexts/UserContext.js'
+import { Button } from '../components2/Button.js';
 //import AcademicExperienceItem from './AcademicExperienceItem.js'
 
 
@@ -58,7 +59,7 @@ export class SkillsItem extends Component {
       <tr>
         <td>{this.props.info.habilidad}</td>
         <td>{this.renderSkillLevel(this.props.info.nivelDeDominio)}</td>
-        <td><button onClick={this.deleteSkillsInfo}>Eliminar</button></td>
+        <td><Button onClick={this.deleteSkillsInfo}>Eliminar</Button></td>
       </tr>
     );
   }
@@ -87,7 +88,7 @@ export class EditableRow extends Component {
                 <option value={3}>Avanzado</option>
             </optgroup>
         </select> </td>
-        <td><button onClick={this.addSkillsInfo}>Añadir</button></td>
+        <td><Button onClick={this.addSkillsInfo}>Añadir</Button></td>
       </tr>
     )
   }

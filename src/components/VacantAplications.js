@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Alert from '../components/Alert.js';
+import { Button } from '../components2/Button.js';
 
 export default class VacantAplications extends Component{
 	state = {aplications: []};
@@ -98,7 +99,7 @@ class SingleAplication extends Component {
 				<td>{this.props.data.segundoApellido}</td>
 				<td>{this.props.data.telefono}</td>
 				<td>{this.props.data.correo}</td>
-				<td><button onClick={this.show}>Mostrar detalles</button></td>
+				<td><Button onClick={this.show}>Mostrar detalles</Button></td>
 			</tr>
 			<tr style={this.state.showDetails ? {backgroundColor: "lightblue"} : {display: "none"}}>
 			<td colSpan="7">
@@ -150,7 +151,7 @@ class SingleAplication extends Component {
 			</select>
 			<input id="personalizedComment" style={ this.state.comment === "Personalizado" ? {} : {display: 'none'}}></input>
 			</div>
-			<button onClick={this.markAsChecked}>Marcar como Revisada</button>
+			<Button onClick={this.markAsChecked}>Marcar como Revisada</Button>
 
 			
 			</td>

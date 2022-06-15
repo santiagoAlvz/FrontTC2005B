@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import UserContext from '../contexts/UserContext.js'
+import { Button } from '../components2/Button.js';
 
 export default class ExperienciaLaboral extends Component {
   state = {experience: []}
@@ -55,7 +56,7 @@ class ExperienciaLaboralItem extends Component {
         <td>{this.props.info.fechaFin}</td>
         <td>{this.props.info.actividadesRealizadas}</td>
         <td>{this.props.info.comentarios}</td>
-        <td><button onClick={this.deleteLaboralInfo}>Eliminar</button></td>
+        <td><Button onClick={this.deleteLaboralInfo}>Eliminar</Button></td>
       </tr>
     );
   }
@@ -86,7 +87,7 @@ class EditableRow extends Component {
         <td><input id="workingEndDate" type="date"/></td>
         <td><input id="actividadesRealizadas"/></td>
         <td><textarea id="comentarios" rows="3"/></td>
-        <td><button onClick={this.addExperienceInfo}>Añadir</button></td>
+        <td><Button onClick={this.addExperienceInfo}>Añadir</Button></td>
       </tr>
     )
   }
