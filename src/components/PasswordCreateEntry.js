@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Requirement from './Requirement.js';
 import { EntryContainer } from '../components2/EntryContainer.js';
+import { StyledPasswordCreate } from '../components2/StyledPasswordCreate.js';
 
 function hasSymbols(letter){
 	const specialChars = ['!','#','$','%','&','/','(',')','?','\\','\'','¡','¿','-','_','.',':',',',';'];
@@ -55,22 +56,23 @@ export default class PasswordCreateEntry extends Component {
  
 	render(){
 		return(
+		<div>
 		<EntryContainer>
-		<label>Ingrese su nueva contraseña<span>*</span></label>
-		<input type="password" onChange={this.verify}></input>
+			<label>Ingrese su nueva contraseña<span>*</span></label>
+			<input type="password" onChange={this.verify}></input>
 		</EntryContainer>
-		/*
-			<div>
+		
+		<StyledPasswordCreate>
 			<b>Requisitos</b>
 			<ul>
-				<li><Requirement text="Longitud de entre 10 y 32 caracteres" achieved={this.state.length}/></li>
-				<li><Requirement text="Mínimo una letra mayúscula" achieved={this.state.upper}/></li>
-				<li><Requirement text="Mínimo una letra minúscula" achieved={this.state.lower}/></li>
-				<li><Requirement text="Mínimo un número" achieved={this.state.number}/></li>
-				<li><Requirement text="Mínimo un caracter especial" achieved={this.state.symbols}/></li>
+				<Requirement text="Longitud de entre 10 y 32 caracteres" achieved={this.state.length}/>
+				<Requirement text="Mínimo una letra mayúscula" achieved={this.state.upper}/>
+				<Requirement text="Mínimo una letra minúscula" achieved={this.state.lower}/>
+				<Requirement text="Mínimo un número" achieved={this.state.number}/>
+				<Requirement text="Mínimo un caracter especial" achieved={this.state.symbols}/>
 			</ul>
-			</div>
-			*/
+		</StyledPasswordCreate>
+		</div>
 		)
 	}
 }
