@@ -8,6 +8,9 @@ import NonMandatoryEntry from '../components/NonMandatoryEntry.js';
 import DateEntry from '../components/DateEntry.js';
 import PhoneEntry from '../components/PhoneEntry.js';
 import Alert from '../components/Alert.js';
+import { StyledRegistro } from '../components2/StyledRegistro.js';
+import { Button } from '../components2/Button.js';
+import { LinkButton } from '../components2/LinkButton.js';
 
 export default class Registro extends Component {
 	state = {
@@ -47,13 +50,13 @@ export default class Registro extends Component {
 	render(){
 
 		return(
-		<div>
+		<StyledRegistro>
+		<div-reg>
 			{this.state.enableAlert ? <Alert message={this.state.alert} type={this.state.alertType}/> : null}
 			<h1>Registro</h1>
-		    <div className="flexible">
-			    <MandatoryEntry ref={nom => this.nom = nom} label="Nombre(s)" warning="Llenar este campo es obligatorio"/>
-			    <NonMandatoryEntry ref={ap1 => this.ap1 = ap1} label="Apellido" warning="Llenar este campo es obligatorio"/>
-			    <NonMandatoryEntry ref={ap2 => this.ap2 = ap2} label="Apellido Materno"/>
+			<MandatoryEntry ref={nom => this.nom = nom} label="Nombre(s)" warning="Llenar este campo es obligatorio"/>
+			<NonMandatoryEntry ref={ap1 => this.ap1 = ap1} label="Apellido" warning="Llenar este campo es obligatorio"/>
+			<NonMandatoryEntry ref={ap2 => this.ap2 = ap2} label="Apellido Materno"/>
 			    <div>
 				    <label>Sexo</label>
 				    <form>
@@ -66,17 +69,17 @@ export default class Registro extends Component {
 			              <label for="female">Femenino</label>
 			         </form>
 		         </div>
-			    <EmailEntry ref={ema => this.ema = ema} label="Correo Electrónico" warning="La dirección de correo no cumple con el formato especificado"/>
-			    <DateEntry ref={nac => this.nac = nac} label="Fecha de nacimiento" warning="Llenar este campo es obligatorio"/>
-			    <PhoneEntry ref={num => this.num = num} label="Número de Teléfono" warning="Llenar este campo es obligatorio"/>
-			    <NonMandatoryEntry ref={civ => this.civ = civ} label="Estado Civil"/>
-			    <DateEntry ref={not => this.not = not} label="Enviar notificaciones desde el"/>
-			    <PasswordCreateEntry ref={pa1 => this.pa1 = pa1}/>
-			    <PasswordEntry ref={pa2 => this.pa2 = pa2} label="Confirme la contraseña" warning="Llenar este campo es obligatorio"/>
-		    </div>
-		    <button onClick={this.addAcount}>Crear Cuenta</button>
-		    <a href="/">Volver al inicio</a>
-	    </div>
+			<EmailEntry ref={ema => this.ema = ema} label="Correo Electrónico" warning="La dirección de correo no cumple con el formato especificado"/>
+			<DateEntry ref={nac => this.nac = nac} label="Fecha de nacimiento" warning="Llenar este campo es obligatorio"/>
+			<PhoneEntry ref={num => this.num = num} label="Número de Teléfono" warning="Llenar este campo es obligatorio"/>
+			<NonMandatoryEntry ref={civ => this.civ = civ} label="Estado Civil"/>
+			<DateEntry ref={not => this.not = not} label="Enviar notificaciones desde el"/>
+			<PasswordCreateEntry ref={pa1 => this.pa1 = pa1}/>
+			<PasswordEntry ref={pa2 => this.pa2 = pa2} label="Confirme la contraseña" warning="Llenar este campo es obligatorio"/>
+		    <Button onClick={this.addAcount}>Crear Cuenta</Button>
+		    <LinkButton href="/">Volver al inicio</LinkButton>
+	    </div-reg>
+		</StyledRegistro>
 	    )
 	 }
 }

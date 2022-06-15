@@ -1,13 +1,14 @@
 export const colors = {
-    blue: '#4365E0',
-    lightBlue: '#A6B9FA',
-    darkBlue: '#253E9B',
-    red: '#FF3E1D',
-    yellow: '#FFAB00',
+    blue: '#6588E6',
+    lightBlue: '#EEF1FF',
+    darkBlue: '#2D4B9C',
+    red: '#E66371',
     green: '#71DD37',
     white: '#FFFFFF',
-    lightGray: '#F5F5F9',
-    gray: '#697A8D',
-    orange: '#FFAB00',
-    purple: '#696CFF'
+    cream: '#FEFAEE',
+    lightGray: '#B5B9C4',
+    gray: '#828282',
+    orange: '#F9BD7E',
+    purple: '#696CFF',
+    black: '#262757'
 }
