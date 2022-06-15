@@ -1,3 +1,4 @@
+/*
 table {
   margin: auto;
   border-collapse: collapse;
@@ -21,16 +22,19 @@ td {
   padding:  0.5em;
 }
 
-p { margin-top: 0;  margin-bottom: 0;}
+p { 
+  margin-top: 0;
+  margin-bottom: 0;
+}
 
 button {
-    display: block;
-    font-size: 1em;
-    border: 0;
-    padding: 0.5em;
-    border-radius: 0.3em;
-    cursor: pointer;
-    background-color: lightgrey;
+  display: block;
+  font-size: 1em;
+  border: 0;
+  padding: 0.5em;
+  border-radius: 0.3em;
+  cursor: pointer;
+  background-color: lightgrey;
 
 }
 
@@ -144,15 +148,6 @@ select {
   font-weight: bold;
 }
 
-.green {
-  color: green;
-}
-
-.red {
-  color: red;
-  font-weight: bold;
-}
-
 .flexible {
   display: flex;
   flex-direction: row;
@@ -168,3 +163,37 @@ select {
 .pageContent {
   padding-left: 220px;
 }
+
+.blue {
+  color: '#4365E0';
+}
+
+.lightBlue {
+  color: '#A6B9FA';
+}
+
+.red {
+  color: '#FF3E1D';
+
+}
+
+.yellow {
+  color: '#FFAB00';
+}
+
+.green {
+  color: '#71DD37';
+}
+
+.white {
+  color: '#FFFFFF';
+}
+
+.lightGray {
+  color: '#F5F5F9';
+}
+
+.gray {
+  color: '#697A8D';
+}
+*/

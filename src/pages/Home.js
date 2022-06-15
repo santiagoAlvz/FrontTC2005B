@@ -4,6 +4,10 @@ import EmailEntry from '../components/EmailEntry.js';
 import PasswordEntry from '../components/PasswordEntry.js';
 import Alert from '../components/Alert.js';
 import UserContext from '../contexts/UserContext.js';
+import { Button } from '../components2/Button.js';
+import { LinkButton } from '../components2/LinkButton.js';
+import { StyledHome } from '../components2/StyledHome.js';
+import { colors } from '../components2/Theme.js';
 
 
 
@@ -28,17 +32,17 @@ export default class Home extends Component {
 
 	render(){
 		return(
-			
-			<div>
-				{this.state.enableAlert ? <Alert message={this.state.alert} type={this.state.alertType}/> : null}
-				<h1>Página de Inicio</h1>
-				<EmailEntry ref={email => this.email = email} label="Correo Electrónico"/>
-				<PasswordEntry ref={password => this.password = password} label="Contraseña"/>
-				<button onClick={this.login}>Entrar</button>
-				<a href="/Registro">¿No estás dentro? Regístrate</a>
-				{this.state.redirect ? <Navigate to={this.state.route}/> : null }
-			</div>
-
+			<StyledHome>
+				<div>
+					{this.state.enableAlert ? <Alert message={this.state.alert} type={this.state.alertType}/> : null}
+					<h1>INICIO DE SESIÓN</h1>
+					<EmailEntry ref={email => this.email = email} label="Correo Electrónico"/>
+					<PasswordEntry ref={password => this.password = password} label="Contraseña"/>
+					<Button onClick={this.login}>Entrar</Button>
+					<LinkButton href="/Registro">¿No estás dentro? Regístrate</LinkButton>
+					{this.state.redirect ? <Navigate to={this.state.route}/> : null }
+				</div>
+			</StyledHome>
 		)
 	}
 }
