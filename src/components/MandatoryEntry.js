@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { EntryContainer } from '../components2/EntryContainer.js';
 
 export default class MandatoryEntry extends Component {
 	state = {text: "", valid: false}
@@ -17,13 +18,13 @@ export default class MandatoryEntry extends Component {
 
 	render(){
 		return(
-			<div className="entry-div">
-			<label>{this.props.label}<span className="red">*</span></label>
-			<input onChange={this.verify}></input>
-			<p className="red">
-				{this.state.valid ? "" : this.props.warning}
-			</p>
-			</div>
+			<EntryContainer>
+				<label>{this.props.label}<span>*</span></label>
+				<input onChange={this.verify}></input>
+				<p>
+					{this.state.valid ? "" : this.props.warning}
+				</p>
+			</EntryContainer>
 		)
 	}
 }
