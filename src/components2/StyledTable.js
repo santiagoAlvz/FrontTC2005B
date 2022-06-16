@@ -20,8 +20,9 @@ export const StyledTable = styled.table `
 
     th, td {
         text-align: center;
-        padding: 5px;
-
+        padding: 15px;
+        align-self: center;
+        
         input, textarea, select {
             background-color: ${colors.lightBlue};
             border-style:  solid;
@@ -32,5 +33,11 @@ export const StyledTable = styled.table `
             width: 100%;
             margin-bottom: 10px;  
         }
+        
+    }
+
+    ul > li {
+        list-style-type: none;
+        margin-left: -5%;        
     }
 `;

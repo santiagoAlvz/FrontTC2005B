@@ -104,15 +104,15 @@ class SingleAplication extends Component {
 				<td>{this.props.data.correo}</td>
 				<td><Button onClick={this.show}>Mostrar detalles</Button></td>
 			</tr>
-			<tr style={this.state.showDetails ? {backgroundColor: "lightblue"} : {display: "none"}}>
+			<tr style={this.state.showDetails ? {backgroundColor: "#FEFAEE"} : {display: "none"}}>
 				<td colSpan="7">
 				{this.state.academicExperience.length > 0
 					? 	<>
 						<h3>Preparación Academica</h3>
 						<ul>
-						{this.state.academicExperience.map(register =>
-							<li><b>{register.nombre}</b> por <b>{register.institucion}</b> ({register.fechaInicio} - {register.fechaFin}). {register.comentarios}</li>
-						)}
+							{this.state.academicExperience.map(register =>
+								<li><b>{register.nombre}</b> por <b>{register.institucion}</b> ({register.fechaInicio} - {register.fechaFin}). {register.comentarios}</li>
+							)}
 						</ul>
 						</>
 					: null}
@@ -121,9 +121,9 @@ class SingleAplication extends Component {
 					? 	<>
 						<h3>Experiencia Laboral</h3>
 						<ul>
-						{this.state.laboralExperience.map(register =>
-							<li><b>{register.nombreDelPuesto}</b>  para <b>{register.lugarDeLabor}</b> ({register.fechaInicio} - {register.fechaFin}). Realizó {register.actividadesRealizadas}. {register.comentarios}</li>
-						)}
+							{this.state.laboralExperience.map(register =>
+								<li><b>{register.nombreDelPuesto}</b>  para <b>{register.lugarDeLabor}</b> ({register.fechaInicio} - {register.fechaFin}). Realizó {register.actividadesRealizadas}. {register.comentarios}</li>
+							)}
 						</ul>
 						</>
 					: null}
@@ -132,9 +132,9 @@ class SingleAplication extends Component {
 					? 	<>
 						<h3>Habilidades</h3>
 						<ul>
-						{this.state.skills.map(register =>
-							<li>{register.habilidad} ({this.renderSkillLevel(register.nivelDeDominio)})</li>
-						)}
+							{this.state.skills.map(register =>
+								<li>{register.habilidad} ({this.renderSkillLevel(register.nivelDeDominio)})</li>
+							)}
 						</ul>
 						</>
 					: null}
@@ -144,7 +144,6 @@ class SingleAplication extends Component {
 
 				{this.state.enableAlert ? <Alert message={this.state.alert} type={this.state.alertType}/> : null}
 				
-				<div className="flexible">
 				<p>Comentarios</p>
 				<select onChange={this.commentChanged}>
 					<option value="Gracias por tu solicitud, entraremos en contacto contigo pronto">Gracias por tu solicitud, entraremos en contacto contigo pronto</option>
@@ -153,7 +152,6 @@ class SingleAplication extends Component {
 					<option value="Personalizado">Personalizado</option>
 				</select>
 				<input id="personalizedComment" style={ this.state.comment === "Personalizado" ? {} : {display: 'none'}}></input>
-				</div>
 				<Button onClick={this.markAsChecked}>Marcar como Revisada</Button>
 
 				
