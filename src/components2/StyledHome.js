@@ -8,11 +8,7 @@ export const StyledHome = styled.body`
   align-items: center;
   padding: 160px;
 
-  h1 {
-    font-weight: 800;
-    color: ${colors.black};
-    font-size: 2rem;
-  }
+
 
   div-home {
     display: flex;

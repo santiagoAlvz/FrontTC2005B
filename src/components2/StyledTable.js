@@ -4,21 +4,33 @@ import { colors } from './Theme.js';
 export const StyledTable = styled.table `
     margin: auto;
     border-collapse: collapse;
-    //background-color: ${colors.blue};
-    //border: 2px solid black;
+    background-color: ${colors.white};
+    border-radius: 15px;
     
     thead > tr {
-        border-bottom: 2px solid black;
+        border-bottom: 2px solid ${colors.black};
+        color: ${colors.blue};
+        
     }
 
     tbody > tr {
-        //border: 2px solid black;
+        border-bottom: 1px solid ${colors.lightGray};
+        
     }
 
     th, td {
-        //border: 2px solid black;
         text-align: center;
-        padding: 15px;
-    }
+        padding: 5px;
 
+        input, textarea, select {
+            background-color: ${colors.lightBlue};
+            border-style:  solid;
+            border-color:  ${colors.lightBlue};
+            text-align: center;
+            border-radius: 15px;
+            height: 30px;
+            width: 100%;
+            margin-bottom: 10px;  
+        }
+    }
 `;

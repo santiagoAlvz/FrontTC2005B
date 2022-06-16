@@ -35,7 +35,7 @@ export default class DataRowWithDetails extends Component{
 				<td><Button onClick={this.show}>Mostrar detalles</Button></td>
 			</tr>
 			
-			<tr style={this.state.showDetails ? {backgroundColor: "lightblue"} : {display: "none"} }>
+			<tr style={this.state.showDetails ? {backgroundColor: "#FEFAEE"} : {display: "none"} }>
 				<td colSpan={Object.keys(this.props.info).length + 1}>
 					<h3>Descripción</h3>
 					<p>{this.props.info.descripcion}</p>

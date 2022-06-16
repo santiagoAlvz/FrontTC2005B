@@ -1,3 +1,39 @@
+h1 {
+  font-weight: 800;
+  color: #262757;
+  font-size: 2rem;
+}
+
+h2 {
+  font-weight: 750;
+  color:  #E66371;
+  font-size: 1.8rem;
+}
+
+.yellowStatus {
+  color: white;
+  background-color: #F9BD7E;
+  border-radius: 1em;
+  padding: 0.4em;
+  text-align: center;
+}
+
+.redStatus {
+  color: white;
+  background-color: #E66371;
+  border-radius: 1em;
+  padding: 0.4em;
+  text-align: center;
+}
+
+.greenStatus {
+  color: white;
+  background-color: #6CB708;
+  border-radius: 1em;
+  padding: 0.4em;
+  text-align: center;
+}
+
 /*
 table {
   margin: auto;
@@ -80,13 +116,7 @@ select {
   border-radius: 0.5em;
 }
 
-.yellowStatus {
-  color: white;
-  background-color: orange;
-  border-radius: 1em;
-  padding: 0.4em;
-  text-align: center;
-}
+
 
 .verticalForm {
   display: flex;
@@ -94,22 +124,6 @@ select {
   flex-direction: column;
   justify-content: center;
   border-radius: 0.5em;
-}
-
-.redStatus {
-  color: white;
-  background-color: red;
-  border-radius: 1em;
-  padding: 0.4em;
-  text-align: center;
-}
-
-.greenStatus {
-  color: white;
-  background-color: #1a8011;
-  border-radius: 1em;
-  padding: 0.4em;
-  text-align: center;
 }
 
 .Box {
