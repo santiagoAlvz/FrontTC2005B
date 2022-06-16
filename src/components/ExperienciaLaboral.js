@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import UserContext from '../contexts/UserContext.js'
+import { Button } from '../components2/Button.js';
+import { StyledTable } from '../components2/StyledTable.js';
+
 
 export default class ExperienciaLaboral extends Component {
   state = {experience: []}
@@ -18,22 +21,22 @@ export default class ExperienciaLaboral extends Component {
   render(){
     return(
       <>
-      <table>
+      <StyledTable>
         <thead>
-          <tr className="Header">
-          <th>Lugar de labor</th>
-          <th>Nombre del puesto</th>
-          <th>Fecha de Inicio</th>
-          <th>Fecha de Fin</th>
-          <th>Actividades realizadas</th>
-          <th>Comentarios</th>
+          <tr>
+            <th>Lugar de labor</th>
+            <th>Nombre del puesto</th>
+            <th>Fecha de Inicio</th>
+            <th>Fecha de Fin</th>
+            <th>Actividades realizadas</th>
+            <th>Comentarios</th>
           </tr>
         </thead>
         <tbody>
           {this.state.experience.map(register => (<ExperienciaLaboralItem key={register.idExpLaboral} info={register} updateList={this.updateList.bind(this)}/>))}
           <EditableRow updateList={this.updateList.bind(this)}/>
         </tbody>
-      </table>
+      </StyledTable>
       </>
     );
   }
@@ -55,7 +58,7 @@ class ExperienciaLaboralItem extends Component {
         <td>{this.props.info.fechaFin}</td>
         <td>{this.props.info.actividadesRealizadas}</td>
         <td>{this.props.info.comentarios}</td>
-        <td><button onClick={this.deleteLaboralInfo}>Eliminar</button></td>
+        <td><Button onClick={this.deleteLaboralInfo}>Eliminar</Button></td>
       </tr>
     );
   }
@@ -78,15 +81,15 @@ class EditableRow extends Component {
   }
 
   render(){
-  return(
-    <tr>
-        <td><input id="lugarDeLabor"/></td>
-        <td><input id="nombreDelPuesto"/></td>
-        <td><input id="workingStartDate" type="date"/></td>
-        <td><input id="workingEndDate" type="date"/></td>
-        <td><input id="actividadesRealizadas"/></td>
-        <td><textarea id="comentarios" rows="3"/></td>
-        <td><button onClick={this.addExperienceInfo}>Añadir</button></td>
+    return(
+      <tr>
+          <td><input id="lugarDeLabor"/></td>
+          <td><input id="nombreDelPuesto"/></td>
+          <td><input id="workingStartDate" type="date"/></td>
+          <td><input id="workingEndDate" type="date"/></td>
+          <td><input id="actividadesRealizadas"/></td>
+          <td><textarea id="comentarios" rows="3"/></td>
+          <td><Button onClick={this.addExperienceInfo}>Añadir</Button></td>
       </tr>
     )
   }

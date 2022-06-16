@@ -1,8 +1,7 @@
+
 import React, {Component} from 'react'
 
-const yellow = {
-	color: "red"
-}
+
 
 export default class DataRow extends Component{
 	render(){

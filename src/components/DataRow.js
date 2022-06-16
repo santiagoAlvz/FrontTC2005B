@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import StatusBadge from './StatusBadge.js'
+import React, {Component} from 'react';
+import StatusBadge from './StatusBadge.js';
 
 export default class DataRow extends Component{
 	render(){
@@ -13,7 +13,7 @@ export default class DataRow extends Component{
 				<td>{this.props.info.fecha}</td>
 				<td><StatusBadge text={this.props.info.estado} style={this.props.statusStyle[this.props.info.estado]}/></td>
 			</tr>
-			<tr style={this.props.info.estado === "Revisada" ? {backgroundColor: 'lightblue'} : {display: 'none'}}>
+			<tr style={this.props.info.estado === "Revisada" ? {backgroundColor: '#FEFAEE'} : {display: 'none'}}>
 				<td colSpan="5">{this.props.info.comentarios}</td>
 			</tr>
 			</>

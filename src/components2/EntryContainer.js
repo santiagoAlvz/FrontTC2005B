@@ -11,7 +11,7 @@ export const EntryContainer = styled.div`
         color: ${colors.red};
     }
 
-    input {
+    input, textarea {
         background-color: ${colors.lightBlue};
         border-style:  solid;
         border-color:  ${colors.lightBlue};

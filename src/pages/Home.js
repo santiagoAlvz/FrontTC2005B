@@ -32,6 +32,7 @@ export default class Home extends Component {
 	render(){
 		return(
 			<StyledHome>
+				<img src={require('../images/Ejobs.jpg')} />
 				<div-home>
 					{this.state.enableAlert ? <Alert message={this.state.alert} type={this.state.alertType}/> : null}
 					<h1>INICIO DE SESIÓN</h1>

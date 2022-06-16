@@ -5,24 +5,26 @@ export const StyledHome = styled.body`
   text-align: center;
   background-color: ${colors.blue};
   display: flex;
+  flex-direction: column;
   align-items: center;
-  padding: 160px;
-
-  h1 {
-    font-weight: 800;
-    color: ${colors.black};
-    font-size: 2rem;
-  }
+  padding: 125px;
 
   div-home {
     display: flex;
     flex-direction: column;
-    padding:  20px;
+    padding:  30px;
     align-self: center;
     background-color: ${colors.white};
     border-radius: 50px;
     margin: auto;
     width: 50%;
+  }
+
+  img {
+    width: 10%;
+    height: 10%;
+    border-radius: 150px;
+    padding: 20px;
   }
 
 `;
