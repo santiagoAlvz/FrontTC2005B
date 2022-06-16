@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import UserContext from '../contexts/UserContext.js'
 import { Button } from '../components2/Button.js';
+import { StyledTable } from '../components2/StyledTable.js';
+
 //import AcademicExperienceItem from './AcademicExperienceItem.js'
 
 export default class AcademicExperience extends Component {
@@ -20,21 +22,21 @@ export default class AcademicExperience extends Component {
   render(){
     return(
       <>
-      <table>
+      <StyledTable>
         <thead>
-          <tr className="Header">
-          <th>Nombre</th>
-          <th>Fecha de Inicio</th>
-          <th>Fecha de Fin</th>
-          <th>Institución</th>
-          <th>Comentarios</th>
+          <tr>
+            <th>Nombre</th>
+            <th>Fecha de Inicio</th>
+            <th>Fecha de Fin</th>
+            <th>Institución</th>
+            <th>Comentarios</th>
           </tr>
         </thead>
         <tbody>
           {this.state.experience.map(register => (<AcademicExperienceItem key={register.idExpAcademica} info={register} updateList={this.updateList.bind(this)}/>))}
           <EditableRow updateList={this.updateList.bind(this)}/>
         </tbody>
-      </table>
+      </StyledTable>
       </>
     );
   }
@@ -85,7 +87,7 @@ class EditableRow extends Component {
         <td><input id="institucion"/></td>
         <td><textarea id="comentarios" rows="3"/></td>
         <td><Button onClick={this.addAcademicInfo}>Añadir</Button></td>
-      </tr>
+    </tr>
     )
   }
 }

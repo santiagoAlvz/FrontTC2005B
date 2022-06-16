@@ -34,21 +34,23 @@ export default class DataRowWithDetails extends Component{
 				<td>{this.props.info.fechaLimite}</td>
 				<td><Button onClick={this.show}>Mostrar detalles</Button></td>
 			</tr>
+			
 			<tr style={this.state.showDetails ? {backgroundColor: "lightblue"} : {display: "none"} }>
-			<td colSpan={Object.keys(this.props.info).length + 1}>
-				<h3>Descripción</h3>
-				<p>{this.props.info.descripcion}</p>
+				<td colSpan={Object.keys(this.props.info).length + 1}>
+					<h3>Descripción</h3>
+					<p>{this.props.info.descripcion}</p>
 
-				<h3>Requisitos</h3>
-				<p>{this.props.info.requisitos}</p>
+					<h3>Requisitos</h3>
+					<p>{this.props.info.requisitos}</p>
 
-				<h3>Empresa</h3>
-				<p><b>{this.props.info.nombreComercial}</b> ({this.props.info.nombreFiscal}).<br/> País: {this.props.info.pais}.<br/>Área: {this.props.info.area}</p>
+					<h3>Empresa</h3>
+					<p><b>{this.props.info.nombreComercial}</b> ({this.props.info.nombreFiscal}).<br/> País: {this.props.info.pais}.<br/>Área: {this.props.info.area}</p>
 
-			{this.props.appliable ? <Button onClick={this.apply}>Aplicar</Button> : null}
-			{this.state.enableAlert ? <Alert message={this.state.alert} type={this.state.alertType}/> : null}
-			</td>
+				{this.props.appliable ? <Button onClick={this.apply}>Aplicar</Button> : null}
+				{this.state.enableAlert ? <Alert message={this.state.alert} type={this.state.alertType}/> : null}
+				</td>
 			</tr>
+			
 			</>
 			
 		);

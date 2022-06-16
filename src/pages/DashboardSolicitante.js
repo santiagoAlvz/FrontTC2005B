@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import UserContext from '../contexts/UserContext.js';
-import DataRow from '../components/DataRow.js'
+import DataRow from '../components/DataRow.js';
+import { StyledTable } from '../components2/StyledTable.js';
 
 export default class DashboardSolicitante extends Component {
 	state = {aplications: []}
@@ -21,7 +22,7 @@ export default class DashboardSolicitante extends Component {
 			<h1>Dashboard Solicitante</h1>
 
 			{this.state.aplications.length > 0 ?
-			<table>
+			<StyledTable>
 				<thead>
 					<tr className="Header">
 					<th>ID Aplicación</th>
@@ -30,9 +31,11 @@ export default class DashboardSolicitante extends Component {
 					<th>Fecha de Aplicación</th>
 					<th>Status</th>
 					</tr>
-					{this.state.aplications.map(aplication => (<DataRow key={aplication.idSolicitud} info={aplication} status="estado" statusStyle={statusStyle}/>))}
 				</thead>
-			</table> : <p>No tienes ninguna solicitud activa</p>}
+				<tbody>
+					{this.state.aplications.map(aplication => (<DataRow key={aplication.idSolicitud} info={aplication} status="estado" statusStyle={statusStyle}/>))}
+				</tbody>
+			</StyledTable> : <p>No tienes ninguna solicitud activa</p>}
 			</div>
 		);
 	}

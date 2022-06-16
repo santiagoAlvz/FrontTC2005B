@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import UserContext from '../contexts/UserContext.js'
 import { Button } from '../components2/Button.js';
+import { StyledTable } from '../components2/StyledTable.js';
 //import AcademicExperienceItem from './AcademicExperienceItem.js'
 
 
@@ -21,18 +22,18 @@ export default class Skills extends Component {
   render(){
     return(
       <>
-      <table>
+      <StyledTable>
         <thead>
-          <tr className="Header">
-          <th>Habilidad</th>
-          <th>Nivel de dominio</th>
+          <tr>
+            <th>Habilidad</th>
+            <th>Nivel de dominio</th>
           </tr>
         </thead>
         <tbody>
           {this.state.skills.map(register => (<SkillsItem key={register.idSkills} info={register} updateList={this.updateList.bind(this)}/>))}
           <EditableRow updateList={this.updateList.bind(this)}/>
         </tbody>
-      </table>
+      </StyledTable>
       </>
     );
   }
@@ -78,17 +79,17 @@ export class EditableRow extends Component {
   }
 
   render(){
-  return(
-    <tr>
-        <td><input id="habilidad"/></td>
-        <td> <select name="nivelDeDominio" id="nivelDeDominio">
-            <optgroup label="Nivel de dominio">
-                <option value={1}>Principiante</option>
-                <option value={2}>Intermedio</option>
-                <option value={3}>Avanzado</option>
-            </optgroup>
-        </select> </td>
-        <td><Button onClick={this.addSkillsInfo}>Añadir</Button></td>
+    return(
+      <tr>
+          <td><input id="habilidad"/></td>
+          <td> <select name="nivelDeDominio" id="nivelDeDominio">
+              <optgroup label="Nivel de dominio">
+                  <option value={1}>Principiante</option>
+                  <option value={2}>Intermedio</option>
+                  <option value={3}>Avanzado</option>
+              </optgroup>
+          </select> </td>
+          <td><Button onClick={this.addSkillsInfo}>Añadir</Button></td>
       </tr>
     )
   }
