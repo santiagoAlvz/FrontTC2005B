@@ -33,7 +33,6 @@ export const StyledTable = styled.table `
             width: 100%;
             margin-bottom: 10px;  
         }
-        
     }
 
     ul > li {

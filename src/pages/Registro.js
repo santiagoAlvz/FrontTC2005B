@@ -59,7 +59,7 @@ export default class Registro extends Component {
 				<MandatoryEntry ref={ap1 => this.ap1 = ap1} label="Apellido Paterno" warning="Llenar este campo es obligatorio"/>
 				<NonMandatoryEntry ref={ap2 => this.ap2 = ap2} label="Apellido Materno"/>
 				<EntryContainer>
-					<label>Sexo</label>
+					<label warning="Llenar este campo es obligatorio">Sexo<span>*</span></label>
 					<form>
 						<label-radio for="male">Masculino
 							<input type="radio" value="M" id="male"
