@@ -31,6 +31,7 @@ export default class Home extends Component {
 
 	render(){
 		return(
+			<>
 			<StyledHome>
 				<img src={require('../images/Ejobs.jpg')} />
 				<div-home>
@@ -43,6 +44,7 @@ export default class Home extends Component {
 					{this.state.redirect ? <Navigate to={this.state.route}/> : null }
 				</div-home>
 			</StyledHome>
+			</>
 		)
 	}
 }

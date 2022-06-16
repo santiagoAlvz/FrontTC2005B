@@ -72,12 +72,14 @@ class SingleAplication extends Component {
 			if(comment.length > 0){
 				const data = {comments: comment};
 				fetch("/solicitud/marcarRevisada/"+this.props.data.idSolicitud,{method: 'PUT', body: JSON.stringify(data), headers: {'Content-Type': 'application/json'}});
+				this.setState({enableAlert: true, alert: "Se ha marcado como revisada", alertType: "success"});
 			} else {
 				this.setState({enableAlert: true, alert: "Ingresar un comentario es obligatorio", alertType: "error"});
 			}
 		} else {
 			const data = {comments: this.state.comment};
 			fetch("/solicitud/marcarRevisada/"+this.props.data.idSolicitud,{method: 'PUT', body: JSON.stringify(data), headers: {'Content-Type': 'application/json'}});
+			this.setState({enableAlert: true, alert: "Se ha marcado como revisada", alertType: "success"});
 		}
 		
 		
@@ -142,8 +144,6 @@ class SingleAplication extends Component {
 				{this.state.skills.length === 0 && this.state.laboralExperience.length === 0 && this.state.academicExperience.length === 0
 					? <i>No hay Información Profesional que mostrar</i> : null}
 
-				{this.state.enableAlert ? <Alert message={this.state.alert} type={this.state.alertType}/> : null}
-				
 				<p>Comentarios</p>
 				<select onChange={this.commentChanged}>
 					<option value="Gracias por tu solicitud, entraremos en contacto contigo pronto">Gracias por tu solicitud, entraremos en contacto contigo pronto</option>
@@ -153,8 +153,7 @@ class SingleAplication extends Component {
 				</select>
 				<input id="personalizedComment" style={ this.state.comment === "Personalizado" ? {} : {display: 'none'}}></input>
 				<Button onClick={this.markAsChecked}>Marcar como Revisada</Button>
-
-				
+				{this.state.enableAlert ? <Alert message={this.state.alert} type={this.state.alertType}/> : null}
 				</td>
 			</tr>
 			</>
