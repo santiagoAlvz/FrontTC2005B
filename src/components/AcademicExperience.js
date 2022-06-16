@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import UserContext from '../contexts/UserContext.js'
+import { Button } from '../components2/Button.js';
+import { StyledTable } from '../components2/StyledTable.js';
+
 //import AcademicExperienceItem from './AcademicExperienceItem.js'
 
 export default class AcademicExperience extends Component {
@@ -19,21 +22,21 @@ export default class AcademicExperience extends Component {
   render(){
     return(
       <>
-      <table>
+      <StyledTable>
         <thead>
-          <tr className="Header">
-          <th>Nombre</th>
-          <th>Fecha de Inicio</th>
-          <th>Fecha de Fin</th>
-          <th>Institución</th>
-          <th>Comentarios</th>
+          <tr>
+            <th>Nombre</th>
+            <th>Fecha de Inicio</th>
+            <th>Fecha de Fin</th>
+            <th>Institución</th>
+            <th>Comentarios</th>
           </tr>
         </thead>
         <tbody>
           {this.state.experience.map(register => (<AcademicExperienceItem key={register.idExpAcademica} info={register} updateList={this.updateList.bind(this)}/>))}
           <EditableRow updateList={this.updateList.bind(this)}/>
         </tbody>
-      </table>
+      </StyledTable>
       </>
     );
   }
@@ -54,7 +57,7 @@ class AcademicExperienceItem extends Component {
         <td>{this.props.info.fechaFin}</td>
         <td>{this.props.info.institucion}</td>
         <td>{this.props.info.comentarios}</td>
-        <td><button onClick={this.deleteAcademicInfo}>Eliminar</button></td>
+        <td><Button onClick={this.deleteAcademicInfo}>Eliminar</Button></td>
       </tr>
     );
   }
@@ -83,8 +86,8 @@ class EditableRow extends Component {
         <td><input id="fechaFin" type="date"/></td>
         <td><input id="institucion"/></td>
         <td><textarea id="comentarios" rows="3"/></td>
-        <td><button onClick={this.addAcademicInfo}>Añadir</button></td>
-      </tr>
+        <td><Button onClick={this.addAcademicInfo}>Añadir</Button></td>
+    </tr>
     )
   }
 }

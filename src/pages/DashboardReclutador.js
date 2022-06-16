@@ -13,7 +13,7 @@ export default class DashboardReclutador extends Component {
 
 	render(){
 		return(
-			<div className="pageContent">
+			<div>
 			<>
 			<h1>Dashboard Reclutador</h1>
 			{this.state.vacants.length > 0

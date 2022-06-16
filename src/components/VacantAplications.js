@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import Alert from '../components/Alert.js';
+import { Button } from '../components2/Button.js';
+import { StyledTable } from '../components2/StyledTable.js';
 
 export default class VacantAplications extends Component{
 	state = {aplications: []};
@@ -16,9 +18,9 @@ export default class VacantAplications extends Component{
 			<h2>{this.props.data.nombre} (ID Vacante: {this.props.data.idVacante}, Fecha de Expiración: {this.props.data.fechaLimite})</h2>
 			
 			{this.state.aplications.length > 0
-			? <table>
+			? <StyledTable>
 				<thead>
-					<tr className="Header">
+					<tr>
 						<th>ID Aplicación</th>
 						<th>Nombre</th>
 						<th>Apellido Paterno</th>
@@ -26,9 +28,11 @@ export default class VacantAplications extends Component{
 						<th>Teléfono</th>
 						<th>Correo Electrónico</th>
 					</tr>
-					{this.state.aplications.map(aplication => (<SingleAplication key={aplication.idSolicitud} data={aplication}/>))}
 				</thead>
-			</table>
+				<tbody>
+					{this.state.aplications.map(aplication => (<SingleAplication key={aplication.idSolicitud} data={aplication}/>))}
+				</tbody>
+			</StyledTable>
 			: <i>No hay solicitudes para esta vacante</i>}
 			</>
 		)
@@ -98,62 +102,60 @@ class SingleAplication extends Component {
 				<td>{this.props.data.segundoApellido}</td>
 				<td>{this.props.data.telefono}</td>
 				<td>{this.props.data.correo}</td>
-				<td><button onClick={this.show}>Mostrar detalles</button></td>
+				<td><Button onClick={this.show}>Mostrar detalles</Button></td>
 			</tr>
-			<tr style={this.state.showDetails ? {backgroundColor: "lightblue"} : {display: "none"}}>
-			<td colSpan="7">
-			{this.state.academicExperience.length > 0
-				? 	<>
-					<h3>Preparación Academica</h3>
-					<ul>
-					{this.state.academicExperience.map(register =>
-						<li><b>{register.nombre}</b> por <b>{register.institucion}</b> ({register.fechaInicio} - {register.fechaFin}). {register.comentarios}</li>
-					)}
-					</ul>
-					</>
-				: null}
+			<tr style={this.state.showDetails ? {backgroundColor: "#FEFAEE"} : {display: "none"}}>
+				<td colSpan="7">
+				{this.state.academicExperience.length > 0
+					? 	<>
+						<h3>Preparación Academica</h3>
+						<ul>
+							{this.state.academicExperience.map(register =>
+								<li><b>{register.nombre}</b> por <b>{register.institucion}</b> ({register.fechaInicio} - {register.fechaFin}). {register.comentarios}</li>
+							)}
+						</ul>
+						</>
+					: null}
 
-			{this.state.laboralExperience.length > 0
-				? 	<>
-					<h3>Experiencia Laboral</h3>
-					<ul>
-					{this.state.laboralExperience.map(register =>
-						<li><b>{register.nombreDelPuesto}</b>  para <b>{register.lugarDeLabor}</b> ({register.fechaInicio} - {register.fechaFin}). Realizó {register.actividadesRealizadas}. {register.comentarios}</li>
-					)}
-					</ul>
-					</>
-				: null}
+				{this.state.laboralExperience.length > 0
+					? 	<>
+						<h3>Experiencia Laboral</h3>
+						<ul>
+							{this.state.laboralExperience.map(register =>
+								<li><b>{register.nombreDelPuesto}</b>  para <b>{register.lugarDeLabor}</b> ({register.fechaInicio} - {register.fechaFin}). Realizó {register.actividadesRealizadas}. {register.comentarios}</li>
+							)}
+						</ul>
+						</>
+					: null}
 
-			{this.state.skills.length > 0
-				? 	<>
-					<h3>Habilidades</h3>
-					<ul>
-					{this.state.skills.map(register =>
-						<li>{register.habilidad} ({this.renderSkillLevel(register.nivelDeDominio)})</li>
-					)}
-					</ul>
-					</>
-				: null}
+				{this.state.skills.length > 0
+					? 	<>
+						<h3>Habilidades</h3>
+						<ul>
+							{this.state.skills.map(register =>
+								<li>{register.habilidad} ({this.renderSkillLevel(register.nivelDeDominio)})</li>
+							)}
+						</ul>
+						</>
+					: null}
 
-			{this.state.skills.length === 0 && this.state.laboralExperience.length === 0 && this.state.academicExperience.length === 0
-				? <i>No hay Información Profesional que mostrar</i> : null}
+				{this.state.skills.length === 0 && this.state.laboralExperience.length === 0 && this.state.academicExperience.length === 0
+					? <i>No hay Información Profesional que mostrar</i> : null}
 
-			{this.state.enableAlert ? <Alert message={this.state.alert} type={this.state.alertType}/> : null}
-			
-			<div className="flexible">
-			<p>Comentarios</p>
-			<select onChange={this.commentChanged}>
-				<option value="Gracias por tu solicitud, entraremos en contacto contigo pronto">Gracias por tu solicitud, entraremos en contacto contigo pronto</option>
-                <option value="Gracias por tu solicitud, lamentablemente, estamos buscando otras opciones">Gracias por tu solicitud, lamentablemente, estamos buscando otras opciones</option>
-                <option value="Gracias por tu interés, lamentablemente, la posición para la que aplicaste ya fue ocupada">Gracias por tu interés, lamentablemente, la posición para la que aplicaste ya fue ocupada</option>
-                <option value="Personalizado">Personalizado</option>
-			</select>
-			<input id="personalizedComment" style={ this.state.comment === "Personalizado" ? {} : {display: 'none'}}></input>
-			</div>
-			<button onClick={this.markAsChecked}>Marcar como Revisada</button>
+				{this.state.enableAlert ? <Alert message={this.state.alert} type={this.state.alertType}/> : null}
+				
+				<p>Comentarios</p>
+				<select onChange={this.commentChanged}>
+					<option value="Gracias por tu solicitud, entraremos en contacto contigo pronto">Gracias por tu solicitud, entraremos en contacto contigo pronto</option>
+					<option value="Gracias por tu solicitud, lamentablemente, estamos buscando otras opciones">Gracias por tu solicitud, lamentablemente, estamos buscando otras opciones</option>
+					<option value="Gracias por tu interés, lamentablemente, la posición para la que aplicaste ya fue ocupada">Gracias por tu interés, lamentablemente, la posición para la que aplicaste ya fue ocupada</option>
+					<option value="Personalizado">Personalizado</option>
+				</select>
+				<input id="personalizedComment" style={ this.state.comment === "Personalizado" ? {} : {display: 'none'}}></input>
+				<Button onClick={this.markAsChecked}>Marcar como Revisada</Button>
 
-			
-			</td>
+				
+				</td>
 			</tr>
 			</>
 		)

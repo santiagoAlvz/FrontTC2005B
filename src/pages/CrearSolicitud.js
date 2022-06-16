@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import DataRowWithDetails from '../components/DataRowWithDetails.js'
-
+import { StyledTable } from '../components2/StyledTable.js';
 
 export default class CrearSolicitud extends Component {
 	state = {vacants: []}
@@ -17,18 +17,20 @@ export default class CrearSolicitud extends Component {
 			<>
 			<h1>Crear Solicitud </h1>
 			{this.state.vacants.length > 0 ?
-			<table>
+			<StyledTable>
 				<thead>
-					<tr className="Header">
+					<tr>
 					<th>ID Vacante</th>
 					<th>Nombre Vacante</th>
 					<th>Empresa</th>
 					<th>Fecha Publicación</th>
 					<th>Fecha Límite</th>
 					</tr>
-					{this.state.vacants.map(vacant => (<DataRowWithDetails key={vacant.idVacante} info={vacant} details={['descripcion', 'requisitos']} appliable={true} applyAdress="/solicitud"/>))}
 				</thead>
-			</table> : <p>No hay ninguna vacante disponible activa</p>}
+				<tbody>
+					{this.state.vacants.map(vacant => (<DataRowWithDetails key={vacant.idVacante} info={vacant} details={['descripcion', 'requisitos']} appliable={true} applyAdress="/solicitud"/>))}
+				</tbody>
+			</StyledTable> : <p>No hay ninguna vacante disponible activa</p>}
 			</>
 			</div>
 		)

@@ -4,6 +4,7 @@ import MandatoryEntry from '../components/MandatoryEntry.js'
 import LongEntry from '../components/LongEntry.js'
 import UserContext from '../contexts/UserContext.js';
 import Alert from '../components/Alert.js';
+import { Button } from '../components2/Button.js';
 
 export default class CrearVacante extends Component {
 
@@ -21,7 +22,7 @@ export default class CrearVacante extends Component {
 				this.setState({enableAlert: true, alert: "Hay campos obligatorios que faltan por llenar", alertType: "error"});
 				return;
 			}
-		}
+		} 
 
 		fetch('/vacante',{method: 'POST', body: JSON.stringify(data), headers: {'Content-Type': 'application/json'}})
 			.then(response => response.json()).then(responseData => {
@@ -43,7 +44,7 @@ export default class CrearVacante extends Component {
 				<LongEntry ref={desc => this.desc = desc} label="Descripción de Vacante" warning="Campo obligatorio"/>
 				<LongEntry ref={req => this.req = req} label="Requisitos" warning="Campo obligatorio"/>
 			</div>
-			<button onClick={this.addVacant}>Crear Vacante</button>
+			<Button onClick={this.addVacant}>Crear Vacante</Button>
 			</>
 			</div>
 		)
