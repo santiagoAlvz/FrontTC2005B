@@ -11,7 +11,7 @@ export default class NonMandatoryEntry extends Component {
 			color: '#FFFFFF',
 			textAlign: 'center'
 		};
-
+ 
 		const success = {
 			backgroundColor: '#6CB708',
 			padding: '0.5em',
