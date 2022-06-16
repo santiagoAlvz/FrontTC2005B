@@ -16,7 +16,8 @@ export default class NonMandatoryEntry extends Component {
 			backgroundColor: '#6CB708',
 			padding: '0.5em',
 			borderRadius: '15px',
-			textAlign: 'center'
+			textAlign: 'center',
+			color: '#FFFFFF'
 		};
 
 		return(
