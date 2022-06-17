@@ -45,7 +45,8 @@ class SingleAplication extends Component {
 		laboralExperience: [],
 		skills:[],
 		enableAlert: false,
-		comment: ""
+		comment: "Gracias por tu solicitud, entraremos en contacto contigo pronto",
+		personalizedComment: ""
 	};
 
 	componentDidMount(){
@@ -68,18 +69,16 @@ class SingleAplication extends Component {
 
 	markAsChecked = () => {
 		if(this.state.comment === "Personalizado"){
-			const comment = document.getElementById("personalizedComment").value;
-			if(comment.length > 0){
-				const data = {comments: comment};
+			console.log(this.state.personalizedComment);
+			if(this.state.personalizedComment.length > 0){
+				const data = {comments: this.state.personalizedComment};
 				fetch("/solicitud/marcarRevisada/"+this.props.data.idSolicitud,{method: 'PUT', body: JSON.stringify(data), headers: {'Content-Type': 'application/json'}});
-				this.setState({enableAlert: true, alert: "Se ha marcado como revisada", alertType: "success"});
 			} else {
 				this.setState({enableAlert: true, alert: "Ingresar un comentario es obligatorio", alertType: "error"});
 			}
 		} else {
 			const data = {comments: this.state.comment};
 			fetch("/solicitud/marcarRevisada/"+this.props.data.idSolicitud,{method: 'PUT', body: JSON.stringify(data), headers: {'Content-Type': 'application/json'}});
-			this.setState({enableAlert: true, alert: "Se ha marcado como revisada", alertType: "success"});
 		}
 		
 		
@@ -92,6 +91,10 @@ class SingleAplication extends Component {
 
 	commentChanged = (event) => {
 		this.setState({comment: event.target.value});
+	}
+
+	personalizedCommentChanged = (event) => {
+		this.setState({personalizedComment: event.target.value})
 	}
 
 	render(){
@@ -151,7 +154,7 @@ class SingleAplication extends Component {
 					<option value="Gracias por tu interés, lamentablemente, la posición para la que aplicaste ya fue ocupada">Gracias por tu interés, lamentablemente, la posición para la que aplicaste ya fue ocupada</option>
 					<option value="Personalizado">Personalizado</option>
 				</select>
-				<input id="personalizedComment" style={ this.state.comment === "Personalizado" ? {} : {display: 'none'}}></input>
+				<input onChange={this.personalizedCommentChanged}  style={ this.state.comment === "Personalizado" ? {} : {display: 'none'}}></input>
 				<Button onClick={this.markAsChecked}>Marcar como Revisada</Button>
 				{this.state.enableAlert ? <Alert message={this.state.alert} type={this.state.alertType}/> : null}
 				</td>
