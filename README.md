@@ -1,6 +1,6 @@
 # E-Jobs
 This web application allows the connection between people looking for job opportunities and recruiters in IT areas. It is developed using Express and React, which are both being administered by NPM.
-The controler of this application is a MySQL database, containing all the information regarding the solicitants and recruiters.
+The controler of this application is a MySQL database, containing all the information regarding the applicants and recruiters.
 
 # Getting Started with Create React App
 
